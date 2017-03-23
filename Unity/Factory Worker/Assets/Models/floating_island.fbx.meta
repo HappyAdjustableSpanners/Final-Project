@@ -1,0 +1,258 @@
+fileFormatVersion: 2
+guid: e9a3e17978c07f34eb140320b276dde4
+timeCreated: 1486931555
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Camera
+    100002: Cube
+    100004: Cube.001
+    100006: Cube.002
+    100008: Cylinder
+    100010: //RootNode
+    100012: Lamp
+    100014: Plane.000
+    100016: Plane.001
+    100018: Plane.002
+    100020: Plane.003
+    100022: Plane.004
+    100024: Plane.005
+    100026: Plane.006
+    100028: Plane.007
+    100030: Plane.008
+    100032: Plane.009
+    100034: Plane.010
+    100036: Plane.011
+    100038: Plane.012
+    100040: Plane.013
+    100042: Plane.014
+    100044: Plane.015
+    400000: Camera
+    400002: Cube
+    400004: Cube.001
+    400006: Cube.002
+    400008: Cylinder
+    400010: //RootNode
+    400012: Lamp
+    400014: Plane.000
+    400016: Plane.001
+    400018: Plane.002
+    400020: Plane.003
+    400022: Plane.004
+    400024: Plane.005
+    400026: Plane.006
+    400028: Plane.007
+    400030: Plane.008
+    400032: Plane.009
+    400034: Plane.010
+    400036: Plane.011
+    400038: Plane.012
+    400040: Plane.013
+    400042: Plane.014
+    400044: Plane.015
+    2300000: Cube
+    2300002: Cube.001
+    2300004: Cube.002
+    2300006: Cylinder
+    2300008: Plane.000
+    2300010: Plane.001
+    2300012: Plane.002
+    2300014: Plane.003
+    2300016: Plane.004
+    2300018: Plane.005
+    2300020: Plane.006
+    2300022: Plane.007
+    2300024: Plane.008
+    2300026: Plane.009
+    2300028: Plane.010
+    2300030: Plane.011
+    2300032: Plane.012
+    2300034: Plane.013
+    2300036: Plane.014
+    2300038: Plane.015
+    3300000: Cube
+    3300002: Cube.001
+    3300004: Cube.002
+    3300006: Cylinder
+    3300008: Plane.000
+    3300010: Plane.001
+    3300012: Plane.002
+    3300014: Plane.003
+    3300016: Plane.004
+    3300018: Plane.005
+    3300020: Plane.006
+    3300022: Plane.007
+    3300024: Plane.008
+    3300026: Plane.009
+    3300028: Plane.010
+    3300030: Plane.011
+    3300032: Plane.012
+    3300034: Plane.013
+    3300036: Plane.014
+    3300038: Plane.015
+    4300000: Cylinder
+    4300002: Plane.015
+    4300004: Plane.014
+    4300006: Plane.013
+    4300008: Plane.011
+    4300010: Plane.010
+    4300012: Plane.009
+    4300014: Plane.008
+    4300016: Plane.007
+    4300018: Plane.005
+    4300020: Plane.004
+    4300022: Plane.001
+    4300024: Plane.000
+    4300026: Cube
+    4300028: Cube.001
+    4300030: Plane.002
+    4300032: Plane.003
+    4300034: Plane.006
+    4300036: Plane.012
+    4300038: Cube.002
+    7400000: Cylinder|CylinderAction
+    7400002: Idle
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Idle
+      takeName: Cylinder|CylinderAction.001
+      firstFrame: 0
+      lastFrame: 49
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Camera
+        weight: 1
+      - path: Cube
+        weight: 1
+      - path: Cube.001
+        weight: 1
+      - path: Cube.002
+        weight: 1
+      - path: Cylinder
+        weight: 1
+      - path: Lamp
+        weight: 1
+      - path: Plane.000
+        weight: 1
+      - path: Plane.001
+        weight: 1
+      - path: Plane.002
+        weight: 1
+      - path: Plane.003
+        weight: 1
+      - path: Plane.004
+        weight: 1
+      - path: Plane.005
+        weight: 1
+      - path: Plane.006
+        weight: 1
+      - path: Plane.007
+        weight: 1
+      - path: Plane.008
+        weight: 1
+      - path: Plane.009
+        weight: 1
+      - path: Plane.010
+        weight: 1
+      - path: Plane.011
+        weight: 1
+      - path: Plane.012
+        weight: 1
+      - path: Plane.013
+        weight: 1
+      - path: Plane.014
+        weight: 1
+      - path: Plane.015
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,38 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\VRTK-master\Assets\VRTK\SDK\SteamVR\SDK_SteamVRController.cs">
+    <Files>
+      <File FileName="Assets\Scripts\ConveyorBehaviour.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\SpawnerScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GenerateLevelRules.cs" Line="1" Column="1" />
+      <File FileName="Assets\VRTK-master\Assets\VRTK\Prefabs\Resources\Scripts\VRTK_ControllerTooltips.cs" Line="1" Column="1" />
+      <File FileName="Assets\VRTK-master\Assets\VRTK\Prefabs\Resources\Scripts\VRTK_ObjectTooltip.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\WarningLightsBehaviour.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\ConveyorObjectBehaviour.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PipeScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\WandController.cs" Line="1" Column="1" />
+      <File FileName="Assets\SteamVR\Editor\SteamVR_Update.cs" Line="1" Column="1" />
+      <File FileName="Assets\SteamVR\Scripts\SteamVR_Status.cs" Line="1" Column="1" />
+      <File FileName="Assets\SteamVR\InteractionSystem\Core\Scripts\CircularDrive.cs" Line="1" Column="1" />
+      <File FileName="Assets\SteamVR\InteractionSystem\Core\Scripts\Util.cs" Line="538" Column="6" />
+      <File FileName="Assets\Scripts\MagnetScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\FloorBehaviour.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\SetToOnTriggerOnStart.cs" Line="1" Column="1" />
+      <File FileName="Assets\VRTK-master\Assets\VRTK\Scripts\Interactions\VRTK_ControllerActions.cs" Line="1" Column="1" />
+      <File FileName="Assets\VRTK-master\Assets\VRTK\SDK\SteamVR\SDK_SteamVRController.cs" Line="732" Column="15" />
+      <File FileName="Assets\SteamVR\Scripts\SteamVR_Utils.cs" Line="510" Column="38" />
+      <File FileName="Assets\VRTK-master\Assets\VRTK\Examples\Resources\Scripts\FireExtinguisher_Sprayer.cs" Line="27" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="C:\Users\Jonny Holmes\Documents\Uni\Final Project\Final-Project\Unity\Factory Worker\Assets\WarningLightsBehaviour.cs" line="20" column="1" />
+      <Breakpoint file="C:\Users\Jonny Holmes\Documents\Uni\Final Project\Final-Project\Unity\Factory Worker\Assets\PopulateRuleBoard.cs" line="39" column="1" />
+      <Breakpoint file="C:\Users\Jonny Holmes\Documents\Uni\Final Project\Final-Project\Unity\Factory Worker\Assets\PopulateRuleBoard.cs" line="27" column="1" />
+      <Breakpoint file="C:\Users\Jonny Holmes\Documents\Uni\Final Project\Final-Project\Unity\Factory Worker\Assets\Scripts\ConveyorObjectBehaviour.cs" line="16" column="20" />
+      <Breakpoint file="C:\Users\Jonny Holmes\Documents\Uni\Final Project\Final-Project\Unity\Factory Worker\Assets\MagnetScript.cs" line="55" column="1" />
+      <Breakpoint file="C:\Users\Jonny Holmes\Documents\Uni\Final Project\Final-Project\Unity\Factory Worker\Assets\Scripts\MagnetScript.cs" line="75" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
