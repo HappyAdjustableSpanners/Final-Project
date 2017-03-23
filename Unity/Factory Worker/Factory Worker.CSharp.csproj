@@ -75,21 +75,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\ColorPicker\ColorHuePicker.cs" />
-    <Compile Include="Assets\ColorPicker\ColorIndicator.cs" />
-    <Compile Include="Assets\ColorPicker\ColorSaturationBrightnessPicker.cs" />
-    <Compile Include="Assets\ColorPicker\Draggable.cs" />
-    <Compile Include="Assets\ColorPicker\ExampleColorReceiver.cs" />
-    <Compile Include="Assets\ColorPicker\HSBColor.cs" />
-    <Compile Include="Assets\Deprecated Assets\Scripts\Plugins\openvr_api.cs" />
     <Compile Include="Assets\DiscoLightsScript.cs" />
     <Compile Include="Assets\EraserScript.cs" />
-    <Compile Include="Assets\FarlandSkies\Demo\Scripts\Player\FPSWalkerEnhanced.cs" />
-    <Compile Include="Assets\FarlandSkies\Demo\Scripts\Player\SmoothMouseLook.cs" />
-    <Compile Include="Assets\FarlandSkies\Demo\Scripts\Skybox\SkyboxChanger.cs" />
-    <Compile Include="Assets\FarlandSkies\Demo\Scripts\Skybox\SkyboxRotator.cs" />
+    <Compile Include="Assets\Resources\Prefabs\ColorPicker\ColorHuePicker.cs" />
+    <Compile Include="Assets\Resources\Prefabs\ColorPicker\ColorIndicator.cs" />
+    <Compile Include="Assets\Resources\Prefabs\ColorPicker\ColorSaturationBrightnessPicker.cs" />
+    <Compile Include="Assets\Resources\Prefabs\ColorPicker\Draggable.cs" />
+    <Compile Include="Assets\Resources\Prefabs\ColorPicker\ExampleColorReceiver.cs" />
+    <Compile Include="Assets\Resources\Prefabs\ColorPicker\HSBColor.cs" />
+    <Compile Include="Assets\Resources\Skyboxes\FarlandSkies\Demo\Scripts\Player\FPSWalkerEnhanced.cs" />
+    <Compile Include="Assets\Resources\Skyboxes\FarlandSkies\Demo\Scripts\Player\SmoothMouseLook.cs" />
+    <Compile Include="Assets\Resources\Skyboxes\FarlandSkies\Demo\Scripts\Skybox\SkyboxChanger.cs" />
+    <Compile Include="Assets\Resources\Skyboxes\FarlandSkies\Demo\Scripts\Skybox\SkyboxRotator.cs" />
     <Compile Include="Assets\Scripts\ArcheryGameScripts\ArcheryGameController.cs" />
-    <Compile Include="Assets\Scripts\ArcheryGameScripts\ArcheryLevelScript.cs" />
     <Compile Include="Assets\Scripts\ArcheryGameScripts\ArcheryTargetBehaviour.cs" />
     <Compile Include="Assets\Scripts\GeneralScripts\GrabSphereBehaviour.cs" />
     <Compile Include="Assets\Scripts\GeneralScripts\ReadSceneNames.cs" />
@@ -107,6 +105,7 @@
     <Compile Include="Assets\Scripts\PipeGameScripts\PlatformScript.cs" />
     <Compile Include="Assets\Scripts\PipeGameScripts\RotateScript.cs" />
     <Compile Include="Assets\Scripts\PipeGameScripts\SwitchLevelScript.cs" />
+    <Compile Include="Assets\Scripts\Plugins\openvr_api.cs" />
     <Compile Include="Assets\Scripts\SnowGameScripts\AnimationScript.cs" />
     <Compile Include="Assets\Scripts\SnowGameScripts\AnimatorScriptStatic.cs" />
     <Compile Include="Assets\Scripts\SnowGameScripts\FetchBehaviour.cs" />
@@ -235,13 +234,13 @@
     <Compile Include="Assets\Vive-Teleporter\Scripts\ViveNavMeshEditor.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\ColorPicker\ColorHue.shader" />
-    <None Include="Assets\ColorPicker\ColorSaturationBrightness.shader" />
-    <None Include="Assets\ColorPicker\SolidColor.shader" />
-    <None Include="Assets\ColorPicker\readme.txt" />
-    <None Include="Assets\ColorfulButtons\Credits.txt" />
     <None Include="Assets\Resources\Fonts\luckiest-guy\FontShader.shader" />
     <None Include="Assets\Resources\Fonts\luckiest-guy\LICENSE.txt" />
+    <None Include="Assets\Resources\Icons\ColorfulButtons\Credits.txt" />
+    <None Include="Assets\Resources\Prefabs\ColorPicker\ColorHue.shader" />
+    <None Include="Assets\Resources\Prefabs\ColorPicker\ColorSaturationBrightness.shader" />
+    <None Include="Assets\Resources\Prefabs\ColorPicker\SolidColor.shader" />
+    <None Include="Assets\Resources\Prefabs\ColorPicker\readme.txt" />
     <None Include="Assets\Shaders\Dissolve.shader" />
     <None Include="Assets\Shaders\DoubleSided.shader" />
     <None Include="Assets\SteamVR\InteractionSystem\Core\Shaders\SeeThru.shader" />
