@@ -75,8 +75,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\DiscoLightsScript.cs" />
-    <Compile Include="Assets\EraserScript.cs" />
     <Compile Include="Assets\Resources\Prefabs\ColorPicker\ColorHuePicker.cs" />
     <Compile Include="Assets\Resources\Prefabs\ColorPicker\ColorIndicator.cs" />
     <Compile Include="Assets\Resources\Prefabs\ColorPicker\ColorSaturationBrightnessPicker.cs" />
@@ -92,12 +90,13 @@
     <Compile Include="Assets\Scripts\GeneralScripts\GrabSphereBehaviour.cs" />
     <Compile Include="Assets\Scripts\GeneralScripts\ReadSceneNames.cs" />
     <Compile Include="Assets\Scripts\GeneralScripts\SinusoidalMovement.cs" />
-    <Compile Include="Assets\Scripts\GeneralScripts\showfps.cs" />
     <Compile Include="Assets\Scripts\PainterGameScripts\BrushScript.cs" />
-    <Compile Include="Assets\Scripts\PainterGameScripts\ChangeCOlor.cs" />
+    <Compile Include="Assets\Scripts\PainterGameScripts\ChangeColor.cs" />
     <Compile Include="Assets\Scripts\PainterGameScripts\ColorManager.cs" />
     <Compile Include="Assets\Scripts\PainterGameScripts\DrawLineManager.cs" />
+    <Compile Include="Assets\Scripts\PainterGameScripts\EraserScript.cs" />
     <Compile Include="Assets\Scripts\PainterGameScripts\MeshLineRenderer.cs" />
+    <Compile Include="Assets\Scripts\PipeGameScripts\DiscoLightsScript.cs" />
     <Compile Include="Assets\Scripts\PipeGameScripts\FloorBehaviour.cs" />
     <Compile Include="Assets\Scripts\PipeGameScripts\PipeGameManager.cs" />
     <Compile Include="Assets\Scripts\PipeGameScripts\PipeScript.cs" />
@@ -106,18 +105,15 @@
     <Compile Include="Assets\Scripts\PipeGameScripts\RotateScript.cs" />
     <Compile Include="Assets\Scripts\PipeGameScripts\SwitchLevelScript.cs" />
     <Compile Include="Assets\Scripts\Plugins\openvr_api.cs" />
-    <Compile Include="Assets\Scripts\SnowGameScripts\AnimationScript.cs" />
-    <Compile Include="Assets\Scripts\SnowGameScripts\AnimatorScriptStatic.cs" />
     <Compile Include="Assets\Scripts\SnowGameScripts\FetchBehaviour.cs" />
     <Compile Include="Assets\Scripts\SnowGameScripts\FloorScript.cs" />
-    <Compile Include="Assets\Scripts\SnowGameScripts\NavMeshAgentScriptMan.cs" />
+    <Compile Include="Assets\Scripts\SnowGameScripts\LookAtPlayer.cs" />
     <Compile Include="Assets\Scripts\SnowGameScripts\NavMeshAgentScriptStatic.cs" />
-    <Compile Include="Assets\Scripts\SnowGameScripts\NavMeshAgentScriptWolf.cs" />
-    <Compile Include="Assets\Scripts\SnowGameScripts\SnowGameController.cs" />
     <Compile Include="Assets\Scripts\SnowGameScripts\StickScript.cs" />
     <Compile Include="Assets\Scripts\SnowGameScripts\WhistleBehaviour.cs" />
-    <Compile Include="Assets\Scripts\SnowGameScripts\Wolf\LookAtPlayer.cs" />
-    <Compile Include="Assets\Scripts\SnowGameScripts\Wolf\WolfMove.cs" />
+    <Compile Include="Assets\Scripts\SnowGameScripts\WolfAnimationSelect.cs" />
+    <Compile Include="Assets\Scripts\SnowGameScripts\WolfMove.cs" />
+    <Compile Include="Assets\Scripts\SnowGameScripts\WolfWander.cs" />
     <Compile Include="Assets\Scripts\VR\ControllerButtonEvents.cs" />
     <Compile Include="Assets\Scripts\VR\DebugCameraScript.cs" />
     <Compile Include="Assets\Scripts\VR\FadeScene.cs" />
@@ -226,6 +222,7 @@
     <Compile Include="Assets\SteamVR\Scripts\SteamVR_TrackedObject.cs" />
     <Compile Include="Assets\SteamVR\Scripts\SteamVR_UpdatePoses.cs" />
     <Compile Include="Assets\SteamVR\Scripts\SteamVR_Utils.cs" />
+    <Compile Include="Assets\TextLookAtPlayer.cs" />
     <Compile Include="Assets\Vive-Teleporter\Scripts\BorderRenderer.cs" />
     <Compile Include="Assets\Vive-Teleporter\Scripts\ParabolicPointer.cs" />
     <Compile Include="Assets\Vive-Teleporter\Scripts\TeleportTest.cs" />

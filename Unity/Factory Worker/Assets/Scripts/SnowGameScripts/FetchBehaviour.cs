@@ -42,9 +42,6 @@ public class FetchBehaviour : MonoBehaviour {
         //Animator
         anim = GetComponent<Animator>();
 
-        //Get the stick's interactable item behaviour
-        //stickInteractableItemBehaviour = stick.GetComponent<InteractableItem>();
-
     }
 	
 	// Update is called once per frame
@@ -61,14 +58,13 @@ public class FetchBehaviour : MonoBehaviour {
             //Move towards the player
             MoveToPlayer();
         }
-        else if( fetchState == FetchState.waitingForPlayerToThrowStick)
-        {
-        }
 	}
 
     private void FetchStick()
     {
+        //Resume the nav mesh agent path find
         navMeshAgent.Resume();
+
         //Go to stick position
         navMeshAgent.SetDestination(stick.transform.position);
 
@@ -77,7 +73,7 @@ public class FetchBehaviour : MonoBehaviour {
         {
             if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
             {
-                if (!navMeshAgent.hasPath || navMeshAgent.velocity.sqrMagnitude < 10f)
+                if (!navMeshAgent.hasPath || navMeshAgent.velocity.sqrMagnitude < 15f)
                 {
                     //Change stick to not use gravity
                     stickRb.useGravity = false;
@@ -100,8 +96,9 @@ public class FetchBehaviour : MonoBehaviour {
 
     private void MoveToPlayer()
     {
-
+        //Resume the nav mesh agent path finding
         navMeshAgent.Resume();
+
         //Go to stick position
         navMeshAgent.SetDestination(playerPos.position);
 
@@ -110,7 +107,7 @@ public class FetchBehaviour : MonoBehaviour {
         {
             if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
             {
-                if (!navMeshAgent.hasPath || navMeshAgent.velocity.sqrMagnitude < 10f)
+                if (!navMeshAgent.hasPath || navMeshAgent.velocity.sqrMagnitude < 20f)
                 {
                     //Stop and sit
                     if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Sit") && !anim.GetCurrentAnimatorStateInfo(0).IsName("SitLook"))
@@ -118,13 +115,22 @@ public class FetchBehaviour : MonoBehaviour {
                         anim.SetTrigger("Sit");
                         navMeshAgent.Stop();
                         fetchState = FetchState.waitingForPlayerToThrowStick;
+
+                        StartCoroutine("DisableAnimatorAfterDelay");
                     }
                 }
             }
         }
     }
 
-    //Called when the stick hits the ground
+    private IEnumerator DisableAnimatorAfterDelay()
+    {
+        yield return new WaitForSeconds(1f);
+
+        anim.enabled = false;
+    }
+
+    //Gets and sets
     public void setFetch(bool value)
     {
         if (value == true)
@@ -132,14 +138,15 @@ public class FetchBehaviour : MonoBehaviour {
             //Set fetch state to fetching stick
             fetchState = FetchState.fetchingStick;
 
-            //Set anim to running
+            anim.enabled = true;
+            //Set anim to running      
             anim.SetTrigger("Running");
         }
         else
             fetchState = FetchState.deliveringStickToPlayer;
     }
-
-    public bool isWaitingForPlayer()
+    
+    public bool getWaitingForPlayer()
     {
         if (fetchState == FetchState.waitingForPlayerToThrowStick)
         {

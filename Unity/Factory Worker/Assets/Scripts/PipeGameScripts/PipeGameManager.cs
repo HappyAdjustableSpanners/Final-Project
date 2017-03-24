@@ -6,36 +6,56 @@ using UnityEditor;
 
 public class PipeGameManager : MonoBehaviour {
 
+    //Easy build levels. Just build a level, and enter the number of pipes and platforms
     public int numPipes = 3;
     public int numPlatforms = 3;
 
-    private int pipesReady, platformsReady = 0;
-
+    //Pipe and platform game objects
     private GameObject[] platforms;
     private GameObject[] pipes;
+
+    //Keep track of how many pipes and platforms are ready
+    private int pipesReady, platformsReady = 0;
+
+    //Pipe spawn script
     private PipeSpawnScript pipeSpawnScript;
+
+    //Scene management
     private ReadSceneNames readSceneNamesBehaviour;
     private string[] sceneNames;
+
+    //First and last level
+    private int startLevel;
+    private int finalLevel;
+
+    //Level management
     private bool[] levelsComplete;
     private int numLevels = 15;
+
+    //High score (Player prefs)
     private int topLevel;
-    private int startSceneIndex;
+
+    //have we finished the level?
     private bool ready = false;
-    public GameObject[] levelSquares;
-    public int finalLevel;
+
+    //Level select board
+    private GameObject[] levelSquares = new GameObject[15];
+
     private int currentLevel;
-    private GameObject currentLevelCircle, newCurrentLevelCircle;
     private AudioSource audioSource;
     private AudioClip failBeep;
 
     void Awake()
     {
-        //Attach audio sources to relavent objects
-        GameObject.FindGameObjectWithTag("GameController").AddComponent<AudioSource>();
-        GameObject.FindGameObjectWithTag("SpawnPipe").AddComponent<AudioSource>();
+        //Get pipes and platform game objects
         GameObject[] platforms = GameObject.FindGameObjectsWithTag("GamePlatform");
         GameObject[] pipes = GameObject.FindGameObjectsWithTag("GamePipe");
 
+        //Attach audio sources to game controller and spawn pipe
+        GameObject.FindGameObjectWithTag("GameController").AddComponent<AudioSource>();
+        GameObject.FindGameObjectWithTag("SpawnPipe").AddComponent<AudioSource>();
+        
+        //Attach audio sources to pipes and platforms
         foreach (GameObject go in platforms)
         {
             go.AddComponent<AudioSource>();
@@ -49,7 +69,9 @@ public class PipeGameManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
+        //Uncomment the line below to reset the top score from user prefs
         //PlayerPrefs.SetInt("TopLevel", 0);
+
         //Load in player prefs top level
         topLevel = PlayerPrefs.GetInt("TopLevel");
 
@@ -67,9 +89,6 @@ public class PipeGameManager : MonoBehaviour {
         readSceneNamesBehaviour = GetComponent<ReadSceneNames>();
         sceneNames = readSceneNamesBehaviour.getNames();
 
-        //Get the index of the first pipe scene
-        startSceneIndex = 1;
-
         //Get level squares
         for(int i = 0; i < levelSquares.Length; i++)
         {
@@ -81,8 +100,12 @@ public class PipeGameManager : MonoBehaviour {
  
         }
 
+        //Get the start and final level
+        startLevel = 1;
+        finalLevel = levelSquares.Length + 1;
+
         //Color all the levels we have done, green
-        for(int i = 0; i < topLevel; i++)
+        for (int i = 0; i < topLevel; i++)
         {
             levelSquares[i].GetComponent<Renderer>().material.color = Color.green;
         }
@@ -92,20 +115,11 @@ public class PipeGameManager : MonoBehaviour {
             levelSquares[i].GetComponent<Renderer>().material.color = Color.red;
         }
 
-        //Get the final level
-        finalLevel = levelSquares.Length + 1;
    
         //Get the current level
-        currentLevel = SceneManager.GetActiveScene().buildIndex - startSceneIndex;
+        currentLevel = SceneManager.GetActiveScene().buildIndex - startLevel;
 
-        //Load level circle from resources
-        //currentLevelCircle = Resources.Load<GameObject>("Prefabs/CurrentLevelCircle");
-        //newCurrentLevelCircle = Instantiate(currentLevelCircle, levelSquares[currentLevel].transform.position, currentLevelCircle.transform.rotation);
-
-        //Move back to align with level square
-        //newCurrentLevelCircle.transform.position = new Vector3(currentLevelCircle.transform.position.x, currentLevelCircle.transform.position.y, currentLevelCircle.transform.position.z + 0.23f);
-
-        //
+        //Color the current level square yellow so we know what level we are on
         levelSquares[currentLevel].GetComponent<Renderer>().material.color = Color.yellow;
 
         //Get audio source
@@ -118,7 +132,7 @@ public class PipeGameManager : MonoBehaviour {
 
     public void CheckFinished()
     {
-        //If all pipes are ready
+        //If all pipes are ready, continue, else there must still be more pipes to hit, so we spawn another game ball
         if (pipesReady == numPipes)
         {
             //If all platforms are ready
@@ -129,16 +143,16 @@ public class PipeGameManager : MonoBehaviour {
             else
                 ready = false;
 
-
+            //If we have hit all pipes and platforms, continue to next level, else, reset the level
             if (ready)
             {
                 //Get next scene index
                 int index = SceneManager.GetActiveScene().buildIndex + 1;
 
                 //Check if we need to update our top level
-                if (index - startSceneIndex > PlayerPrefs.GetInt("TopLevel"))
+                if (index - startLevel > PlayerPrefs.GetInt("TopLevel"))
                 {
-                    PlayerPrefs.SetInt("TopLevel", index - startSceneIndex);
+                    PlayerPrefs.SetInt("TopLevel", index - startLevel);
                 }
 
                 //If we are not at the final level, Load the scene using SteamVR_LoadLevel
@@ -161,14 +175,11 @@ public class PipeGameManager : MonoBehaviour {
 
     public void LoadNextScene()
     {
-        //If the controller
-        
-
         //Get next scene index
         int index = SceneManager.GetActiveScene().buildIndex + 1;
 
         //Check if this index is not past our top level and this is not our final level
-        if( index < (startSceneIndex + topLevel + 1) && index != finalLevel)
+        if( index < (startLevel + topLevel + 1) && index != finalLevel)
         {
             SteamVR_LoadLevel.Begin(sceneNames[index], false, 0.5f, 0.0f, 0.0f, 0.0f, 1.0f);
         }
@@ -177,12 +188,12 @@ public class PipeGameManager : MonoBehaviour {
     public void LoadPrevScene()
     {
         //Load the scene with the previous build index
-
+  
         //Get prev scene index
         int index = SceneManager.GetActiveScene().buildIndex - 1;
 
         //Make sure we are in bounds
-        if (index >= startSceneIndex)
+        if (index >= startLevel)
         {
             SteamVR_LoadLevel.Begin(sceneNames[index], false, 0.5f, 0.0f, 0.0f, 0.0f, 1.0f);
         }
@@ -206,6 +217,7 @@ public class PipeGameManager : MonoBehaviour {
             //This will change the go color back to red
             go.GetComponent<PlatformScript>().Reset();
         }
+
         foreach (GameObject go in pipes)
         {
             //This will change the go color back to red
@@ -213,16 +225,19 @@ public class PipeGameManager : MonoBehaviour {
         }
     }
 
+    //Spawn the game ball
     public void SpawnGameBall()
     {
         pipeSpawnScript.SpawnGameObject();
     }
 
+    //Signal that a pipe is ready
     public void PipeReady()
     {
         pipesReady++;
     }
 
+    //Signal that a platform is ready
     public void PlatformReady()
     {
         platformsReady++;

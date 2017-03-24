@@ -4,20 +4,26 @@ using UnityEngine;
 
 public class ArcheryTargetBehaviour : MonoBehaviour {
 
+    //Movement values and speed
     public float horizontalMovement = 10.0f;
     public float verticalMovement = 5.0f;
     public float speed = 1f;
 
+    //Sinusoidal movement
     private float index;
+
+    //Reference to game controller
     private ArcheryGameController gameController;
 
     // Use this for initialization
     void Start () {
+        //Get game controller
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<ArcheryGameController>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
         //Sine wave movement
         index += Time.deltaTime;
         float x = horizontalMovement * Mathf.Cos(speed * index);
@@ -25,6 +31,7 @@ public class ArcheryTargetBehaviour : MonoBehaviour {
 
         //Update the local position (relative to its parent)
         transform.localPosition = new Vector3(0, y, x);
+
     }
 
     void OnCollisionEnter(Collision col)

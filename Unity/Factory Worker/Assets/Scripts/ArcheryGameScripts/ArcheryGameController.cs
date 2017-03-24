@@ -5,19 +5,28 @@ using UnityEngine.SceneManagement;
 
 public class ArcheryGameController : MonoBehaviour {
 
+    //Archery targets
     private GameObject[] targets;
     private int targetIndex = 0;
 
     //Scene management
     private ReadSceneNames readSceneNamesBehaviour;
     private string[] sceneNames;
+
+    //Stats
     private float timer = 0f;
-    private TextMesh bestTimeText;
-    private TextMesh currentScoreText;
-    private TextMesh bestAccuracyText;
-    private TextMesh currentAccuracyText;
-    private Valve.VR.InteractionSystem.Longbow longBow;
     private float accuracy = 0;
+
+    //Text Meshes
+    private TextMesh bestTimeText;
+    private TextMesh bestAccuracyText;
+    private TextMesh currentScoreText;
+    private TextMesh currentAccuracyText;
+
+    //Longbow asset
+    private Valve.VR.InteractionSystem.Longbow longBow;
+   
+    //Audio
     private AudioSource audioSource;
     private AudioClip successBeep;
 
@@ -66,7 +75,6 @@ public class ArcheryGameController : MonoBehaviour {
 
         //Update the current score billboard
         currentScoreText.text = Mathf.Round(timer).ToString();
-      
     }
 
     public void NextTarget()
@@ -91,6 +99,7 @@ public class ArcheryGameController : MonoBehaviour {
             targets[targetIndex].SetActive(true);
         }
 
+        //If we have hit the last target
         if (targetIndex == targets.Length)
         {
             //Update best time

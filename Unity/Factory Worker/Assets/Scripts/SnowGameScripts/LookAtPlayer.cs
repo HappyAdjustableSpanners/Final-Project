@@ -3,9 +3,14 @@ using System.Collections;
 
 public class LookAtPlayer : MonoBehaviour {
 
+    //Head bone and camera
 	public GameObject head_bone;
 	public GameObject main_camera;
 
+    //Look speed
+    private float lookSpeed = 2f;
+
+    //The starting angles of each axis
 	private float origX, origY, origZ;
 
 	// Use this for initialization
@@ -21,8 +26,11 @@ public class LookAtPlayer : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		//Look at the main camera
-		head_bone.transform.LookAt ( main_camera.transform.position, new Vector3(0f, 0f, 1f));
+        //Calculate the look rotation
+        Quaternion lookRotation = Quaternion.LookRotation(main_camera.transform.position - head_bone.transform.position);
+
+        //Look at the camera
+        head_bone.transform.rotation = Quaternion.Slerp(head_bone.transform.rotation, lookRotation, lookSpeed * Time.deltaTime);
 
 		//Clamp the rotation
 		head_bone.transform.localEulerAngles = new Vector3( ClampAngle (head_bone.transform.localEulerAngles.x, origX - 100, origX + 100),

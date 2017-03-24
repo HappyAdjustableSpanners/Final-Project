@@ -5,14 +5,23 @@ using Valve.VR.InteractionSystem;
 
 public class GrabSphereBehaviour : MonoBehaviour {
 
-    private InteractableItem interactableItemBehaviour;
-    private Interactable interactableBehaviour;
+	//The renderer component
     private Renderer rend;
+
+	//Original position and rotation vectors
     private Vector3 originalPosition;
     private Quaternion originalRotation;
+
+	//Speed at which the sphere fades
     private float fadeSpeed = 3f;
+
+	//Whether the sphere is being grabbed
     private bool isGrabbed = false;
+
+	//Audio
     private AudioSource audioSource;
+
+	//Makes sure we do not load level multiple times
     private bool loadingLevel = false;
 
     // Use this for initialization
@@ -46,6 +55,7 @@ public class GrabSphereBehaviour : MonoBehaviour {
             transform.rotation = originalRotation;
         }
 
+		//If the slice amount is close to complete slice, load the level
         if(rend.material.GetFloat("_SliceAmount") > 0.85f && !loadingLevel)
         {
             loadingLevel = true;
@@ -54,6 +64,7 @@ public class GrabSphereBehaviour : MonoBehaviour {
         }
     }
 
+	//Gets and sets
     public void setGrabbed(bool value)
     {
         isGrabbed = value;

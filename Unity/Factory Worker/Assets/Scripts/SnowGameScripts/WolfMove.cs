@@ -3,7 +3,7 @@ using System.Collections;
 
 public class WolfMove : MonoBehaviour {
 
-	public float moveSpeed = 5f;
+	public float moveSpeed = 2f;
 	private Rigidbody rb;
 
 	public bool wander = false;

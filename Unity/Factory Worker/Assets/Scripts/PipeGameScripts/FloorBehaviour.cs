@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 public class FloorBehaviour : MonoBehaviour {
 
+    //When game ball collides with floor, destroy it and reset the level
+
+    //Level manager
     private PipeGameManager levelManager;
 
 	// Use this for initialization
@@ -11,13 +14,9 @@ public class FloorBehaviour : MonoBehaviour {
         levelManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<PipeGameManager>();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
 	void OnCollisionEnter(Collision col)
 	{
+        //When the game ball collides with the floor, destroy it, and reset the level
         if (col.gameObject.CompareTag("GameBall")) 
         {
             Destroy(col.gameObject);

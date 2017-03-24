@@ -4,22 +4,21 @@ using UnityEngine;
 
 public class PipeSpawnScript : MonoBehaviour {
 
+    //Object to spawn (in our case, the game ball)
     public GameObject Object;
+
+    //The spawn position
     public Transform position;
+
+    //Audio
     private AudioSource audioSource;
     private AudioClip audioClip;
 
 	// Use this for initialization
 	void Start () {
-
         //Load audio clip from resources
         audioClip = Resources.Load<AudioClip>("Audio/depressure");
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     public void SpawnGameObject()
     {

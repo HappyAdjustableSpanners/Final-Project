@@ -12,11 +12,7 @@ public class StickScript : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
+    //Sets and gets
     public void setUseGravity(bool val)
     {
         rb.useGravity = val;
