@@ -454,7 +454,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Snoop
       takeName: Default Take
-      firstFrame: 160
+      firstFrame: 159
       lastFrame: 185
       wrapMode: 0
       orientationOffsetY: 0

@@ -5,7 +5,7 @@ using UnityEngine;
 public class FetchBehaviour : MonoBehaviour {
 
     //The current state of the agent
-    private enum FetchState { fetchingStick, deliveringStickToPlayer, waitingForPlayerToThrowStick }
+    public enum FetchState { fetchingStick, deliveringStickToPlayer, waitingForPlayerToPickUpStick, waitingForPlayerToThrowStick }
     private FetchState fetchState = FetchState.fetchingStick;
 
     //Our stick game object and rigidbody
@@ -13,10 +13,11 @@ public class FetchBehaviour : MonoBehaviour {
     private Rigidbody stickRb;
 
     //The position in the wolfs mouth that the stick will go to whilst being held
-    public Transform pickUpPosition;
+    private Transform targetStickPos;
 
     //The player's position
     public Transform playerPos;
+    private GameObject playerHeadCam;
 
     //Get a reference to our animation controller
     private Animator anim;
@@ -26,22 +27,27 @@ public class FetchBehaviour : MonoBehaviour {
 
     private InteractableItem stickInteractableItemBehaviour;
 
+    private LookAtPlayer lookAtPlayer;
+
     // Use this for initialization
     void Start () {
 
         //Nav Mesh Agent script
         navMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
 
-        //Wolf head position
-        //headPosition = transform.Find("Armature/Root/Body/Spine4/Spine3/Spine2/Spine1/Head").transform;
-
         //Stick GameObject and rigidbody
         stick = GameObject.FindGameObjectWithTag("FetchStick");
         stickRb = stick.GetComponent<Rigidbody>();
+        targetStickPos = transform.Find("Armature/Root/Body/Spine4/Spine3/Spine2/Spine1/Head/StickTargetPos");
 
         //Animator
         anim = GetComponent<Animator>();
 
+        //Look at player script
+        lookAtPlayer = GetComponent<LookAtPlayer>();
+
+        //Player head cam
+        playerHeadCam = GameObject.Find("Player").transform.Find("SteamVRObjects/VRCamera/FollowHead").gameObject;
     }
 	
 	// Update is called once per frame
@@ -58,7 +64,15 @@ public class FetchBehaviour : MonoBehaviour {
             //Move towards the player
             MoveToPlayer();
         }
-	}
+        else if (fetchState == FetchState.waitingForPlayerToPickUpStick)
+        {
+            lookAtPlayer.setTarget(playerHeadCam);
+        }
+        else if (fetchState == FetchState.waitingForPlayerToThrowStick)
+        {
+            lookAtPlayer.setTarget(stick);
+        }
+    }
 
     private void FetchStick()
     {
@@ -85,7 +99,8 @@ public class FetchBehaviour : MonoBehaviour {
                     stick.transform.parent = transform.Find("Armature/Root/Body/Spine4/Spine3/Spine2/Spine1/Head/");
 
                     //Move stick to pick up position
-                    stick.transform.position = pickUpPosition.position;
+                    stick.transform.position = targetStickPos.position;
+                    stick.transform.rotation = targetStickPos.rotation;
 
                     //Change state to deliver to player
                     fetchState = FetchState.deliveringStickToPlayer;
@@ -114,7 +129,7 @@ public class FetchBehaviour : MonoBehaviour {
                     {
                         anim.SetTrigger("Sit");
                         navMeshAgent.Stop();
-                        fetchState = FetchState.waitingForPlayerToThrowStick;
+                        fetchState = FetchState.waitingForPlayerToPickUpStick;
 
                         StartCoroutine("DisableAnimatorAfterDelay");
                     }
@@ -145,7 +160,7 @@ public class FetchBehaviour : MonoBehaviour {
         else
             fetchState = FetchState.deliveringStickToPlayer;
     }
-    
+
     public bool getWaitingForPlayer()
     {
         if (fetchState == FetchState.waitingForPlayerToThrowStick)
@@ -162,6 +177,14 @@ public class FetchBehaviour : MonoBehaviour {
         {
             anim.SetTrigger("Running");
             fetchState = FetchState.deliveringStickToPlayer;
+        }
+    }
+
+    public void setWaitingForPlayerToThrowStick(bool value)
+    {
+        if(value == true)
+        {
+            fetchState = FetchState.waitingForPlayerToThrowStick;
         }
     }
 }

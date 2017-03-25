@@ -3,40 +3,47 @@ using System.Collections;
 
 public class LookAtPlayer : MonoBehaviour {
 
+    //The camera to look at
+    public GameObject target;
+
     //Head bone and camera
-	public GameObject head_bone;
-	public GameObject main_camera;
+    private GameObject head_bone;
 
     //Look speed
-    private float lookSpeed = 2f;
+    public float lookSpeed = 2f;
 
     //The starting angles of each axis
 	private float origX, origY, origZ;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
+        //Get head bone
+        head_bone = transform.Find("Armature/Root/Body/Spine4/Spine3/Spine2/Spine1/Head").gameObject;
 
-		//Record the originial rotations (needed for clamps)
-		origX = head_bone.transform.localEulerAngles.x;
-		origY = head_bone.transform.localEulerAngles.y;
-		origZ = head_bone.transform.localEulerAngles.z;
-	
-	}
+        //Record the originial rotations (needed for clamps)
+        origX = head_bone.transform.localEulerAngles.x;
+        origY = head_bone.transform.localEulerAngles.y;
+        origZ = head_bone.transform.localEulerAngles.z;
+    }
+        
 	
 	// Update is called once per frame
 	void Update () {
 
-        //Calculate the look rotation
-        Quaternion lookRotation = Quaternion.LookRotation(main_camera.transform.position - head_bone.transform.position);
+        if (target)
+        {
+            //Calculate the look rotation
+            Quaternion lookRotation = Quaternion.LookRotation(target.transform.position - head_bone.transform.position);
 
-        //Look at the camera
-        head_bone.transform.rotation = Quaternion.Slerp(head_bone.transform.rotation, lookRotation, lookSpeed * Time.deltaTime);
+            //Look at the camera
+            head_bone.transform.rotation = Quaternion.Slerp(head_bone.transform.rotation, lookRotation, lookSpeed * Time.deltaTime);
 
-		//Clamp the rotation
-		head_bone.transform.localEulerAngles = new Vector3( ClampAngle (head_bone.transform.localEulerAngles.x, origX - 100, origX + 100),
-													   ClampAngle (head_bone.transform.localEulerAngles.y, origY -20, origY + 20), 
-													   ClampAngle( head_bone.transform.localEulerAngles.z, origZ -10, origZ + 10));
-
+            //Clamp the rotation
+            head_bone.transform.localEulerAngles = new Vector3(ClampAngle(head_bone.transform.localEulerAngles.x, origX - 100, origX + 100),
+                                                           ClampAngle(head_bone.transform.localEulerAngles.y, origY - 40, origY + 40),
+                                                           ClampAngle(head_bone.transform.localEulerAngles.z, origZ - 10, origZ + 10));
+        }
 	}
 
 	private float ClampAngle(float angle, float min, float max) {
@@ -50,4 +57,9 @@ public class LookAtPlayer : MonoBehaviour {
 		if (angle<0) angle += 360;  // if angle negative, convert to 0..360
 		return angle;
 	}
+
+    public void setTarget(GameObject target)
+    {
+        this.target = target;
+    }
 }
