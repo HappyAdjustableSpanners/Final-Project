@@ -75,6 +75,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\ControllerHint.cs" />
+    <Compile Include="Assets\FadeInOutTextMesh.cs" />
     <Compile Include="Assets\Resources\Prefabs\ColorPicker\ColorHuePicker.cs" />
     <Compile Include="Assets\Resources\Prefabs\ColorPicker\ColorIndicator.cs" />
     <Compile Include="Assets\Resources\Prefabs\ColorPicker\ColorSaturationBrightnessPicker.cs" />
@@ -98,6 +100,7 @@
     <Compile Include="Assets\Scripts\PainterGameScripts\MeshLineRenderer.cs" />
     <Compile Include="Assets\Scripts\PipeGameScripts\DiscoLightsScript.cs" />
     <Compile Include="Assets\Scripts\PipeGameScripts\FloorBehaviour.cs" />
+    <Compile Include="Assets\Scripts\PipeGameScripts\GameBallBehaviour.cs" />
     <Compile Include="Assets\Scripts\PipeGameScripts\PipeGameManager.cs" />
     <Compile Include="Assets\Scripts\PipeGameScripts\PipeScript.cs" />
     <Compile Include="Assets\Scripts\PipeGameScripts\PipeSpawnScript.cs" />

@@ -19,7 +19,11 @@ public class FloorBehaviour : MonoBehaviour {
         //When the game ball collides with the floor, destroy it, and reset the level
         if (col.gameObject.CompareTag("GameBall")) 
         {
-            Destroy(col.gameObject);
+            //Get game ball behaviour script
+            GameBallBehaviour gameBallBehaviour = col.gameObject.GetComponent<GameBallBehaviour>();
+
+            gameBallBehaviour.setDissolve(true);
+
             levelManager.Reset();
         }
 	}

@@ -106,7 +106,7 @@ public class WolfAnimationSelect : MonoBehaviour {
     private void PlayRandomHowl()
     {
         //Choose a random howl audio to play
-        howlNum = Random.Range(1, 4);
+        howlNum = Random.Range(1, 5);
 
         if (howlNum == 1)
         {

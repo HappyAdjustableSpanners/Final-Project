@@ -77,7 +77,7 @@ namespace Valve.VR.InteractionSystem
         private Valve.VR.EVRButtonId menuButton = Valve.VR.EVRButtonId.k_EButton_ApplicationMenu;
         private Valve.VR.EVRButtonId triggerButton = Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger;
         private Valve.VR.EVRButtonId dPadRight = Valve.VR.EVRButtonId.k_EButton_DPad_Right;
-        private Valve.VR.EVRButtonId dPadLeft = Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad;
+        private Valve.VR.EVRButtonId dPadLeft = Valve.VR.EVRButtonId.k_EButton_DPad_Left;
         private Vector2 touchPadPos;
 
         public ReadOnlyCollection<AttachedObject> AttachedObjects
@@ -702,18 +702,27 @@ namespace Valve.VR.InteractionSystem
             {
                 SteamVR_LoadLevel.Begin("levelhub", false, 0.5f, 0.0f, 0.0f, 0.0f, 1.0f);
             }
-            
-            drawLineManager.setTriggerDown(getTriggerDown());
-            drawLineManager.setTriggerHold(getTriggerHeld());
+
+            if (controller.index == 4)
+            {
+                drawLineManager.setTriggerDown(getTriggerDown());
+                drawLineManager.setTriggerHold(getTriggerHeld());
+            }
 
             //If the touch pad is pressed
-            if (getDPadTouch())
+            if (getDPadLeftDown())
             {
                 //Get coordinates of touch
-                touchPadPos = controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_Axis0);
+                //touchPadPos = controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_Axis0);
 
                 //Set the width to the x position of the touch pad press
-                drawLineManager.setBrushWidth(touchPadPos);
+                //drawLineManager.setBrushWidth(touchPadPos);
+
+                drawLineManager.DecrementBrushWidth();
+            }
+            else if(getDPadRightDown())
+            {
+                drawLineManager.IncrementBrushWidth();
             }
 		}
 
@@ -878,13 +887,60 @@ namespace Valve.VR.InteractionSystem
         }
 
 
-        private bool getDPadTouch()
+        //private bool getDPadTouch()
+        //{
+        //    bool isDPadTouched = false;
+
+        //    if (controller != null)
+        //    {
+        //        isDPadTouched = controller.GetTouch(dPadLeft);
+        //    }
+
+        //    return isDPadTouched;
+        //}
+
+        private bool getDPadLeftDown()
         {
+            Vector2 touchCoordsCart;
             bool isDPadTouched = false;
 
             if (controller != null)
             {
-                isDPadTouched = controller.GetTouch(dPadLeft);
+                if (controller.GetTouch(Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad))
+                {
+                    touchCoordsCart = controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_Axis0);
+
+                    if (touchCoordsCart.x < 0)
+                    {
+                        return true;
+                    }
+                    else
+                        return false;
+                }
+            }
+
+            
+            return isDPadTouched;
+        }
+
+        private bool getDPadRightDown()
+        {
+            Vector2 touchCoordsCart;
+            bool isDPadTouched = false;
+
+            if (controller != null)
+            {
+                if (controller.GetTouch(Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad))
+                {
+                    touchCoordsCart = controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_Axis0);
+
+                    if (touchCoordsCart.x > 0)
+                    {
+                        return true;
+                    }
+                    else
+                        return false;
+                }
             }
 
             return isDPadTouched;

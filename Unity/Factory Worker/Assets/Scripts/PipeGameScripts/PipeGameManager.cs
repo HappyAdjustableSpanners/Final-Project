@@ -44,6 +44,7 @@ public class PipeGameManager : MonoBehaviour {
     private int currentLevel;
     private AudioSource audioSource;
     private AudioClip failBeep;
+    private AudioClip winbeep;
 
     void Awake()
     {
@@ -127,7 +128,29 @@ public class PipeGameManager : MonoBehaviour {
 
         //Get audio clip from resources and load it
         failBeep = Resources.Load<AudioClip>("Audio/fail_beep");
-        audioSource.clip = failBeep;
+        winbeep = Resources.Load<AudioClip>("Audio/win_beep2");
+
+        SetUpScene();       
+    }
+
+    private void SetUpScene()
+    {
+        //Apply floor material
+        GameObject.Find("Environment").transform.Find("Floor").GetComponent<Renderer>().material = Resources.Load<Material>("Materials/M_Hub");
+
+        //Get room walls
+        Transform[] walls = GameObject.Find("Environment").transform.Find("room_hub").GetComponentsInChildren<Transform>();
+
+        //Add mesh colliders for each wall
+        foreach (Transform t in walls)
+        {
+            t.gameObject.AddComponent<MeshCollider>();
+        }
+
+        // Assign pedestal materials
+        GameObject pedestal = GameObject.Find("GameLevel/Pedestal");
+        Material[] tempMats = { Resources.Load<Material>("Materials/M_LevelBoard"), Resources.Load<Material>("Materials/SnowMat") };
+        pedestal.GetComponent<Renderer>().materials = tempMats;
     }
 
     public void CheckFinished()
@@ -146,6 +169,11 @@ public class PipeGameManager : MonoBehaviour {
             //If we have hit all pipes and platforms, continue to next level, else, reset the level
             if (ready)
             {
+
+                //Play win audio
+                audioSource.clip = winbeep;
+                audioSource.Play();
+
                 //Get next scene index
                 int index = SceneManager.GetActiveScene().buildIndex + 1;
 
@@ -202,6 +230,7 @@ public class PipeGameManager : MonoBehaviour {
     public void Reset()
     {
         //Play audio
+        audioSource.clip = failBeep;
         audioSource.Play();
 
         //Spawn a new ball

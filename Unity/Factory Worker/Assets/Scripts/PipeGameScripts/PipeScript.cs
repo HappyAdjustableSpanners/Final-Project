@@ -7,10 +7,6 @@ public class PipeScript : MonoBehaviour {
     //Level manager
     private PipeGameManager levelManager;
 
-    //Audio
-    private AudioSource audioSource;
-    private AudioClip audioClip;
-
     //Has the pipe been hit?
     private bool pipeReady = false;
 
@@ -21,9 +17,6 @@ public class PipeScript : MonoBehaviour {
     { 
         //Get level manager
         levelManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<PipeGameManager>();
-
-        //Load audio clip from resources
-        audioClip = Resources.Load<AudioClip>("Audio/win_beep2");
     }
     void OnTriggerEnter(Collider col)
     {
@@ -40,11 +33,6 @@ public class PipeScript : MonoBehaviour {
 
                 //Destroy the game ball
                 Destroy(col.gameObject);
-
-                //Get audio source, load the clip and play it
-                audioSource = GetComponent<AudioSource>();
-                audioSource.clip = audioClip;
-                audioSource.Play();
 
                 pipeReady = true;
 

@@ -16,6 +16,8 @@ public class DrawLineManager : MonoBehaviour {
     private int numClicks = 0;
     private bool triggerDown, triggerTouch;
     private float brushWidth = 0.01f;
+    private float lineWidth = 0.01f;
+    public Transform brushTipTip;
 
     public GameObject hand1;
 
@@ -55,8 +57,10 @@ public class DrawLineManager : MonoBehaviour {
             mat = brushTip.GetComponent<Renderer>().material;
             line.lmat = new Material(mat);
 
+            Debug.Log(lineWidth);
+
             //Set width of the line
-            line.setWidth(brushWidth);
+            line.setWidth(lineWidth);
                 
             //Init num clicks to 0
             numClicks = 0;
@@ -64,7 +68,7 @@ public class DrawLineManager : MonoBehaviour {
         else if (triggerTouch)    //if held down
         {
             //While the trigger is held, keep adding points to the line
-            line.AddPoint(hand1.transform.position);
+            line.AddPoint(brushTipTip.position);
 
             //Increment numclicks
             numClicks++;
@@ -100,6 +104,44 @@ public class DrawLineManager : MonoBehaviour {
         {
             brush.transform.localScale = newSize;
         }
+    }
+
+    public void IncrementBrushWidth()
+    {
+        //Get current size
+        float currentSize = brush.transform.localScale.x;
+
+        //Get new size
+        float newSize = currentSize + 0.05f;
+        
+        //If the new size is within the limits
+        if (newSize <= 0.9)
+        {
+            //Set brush width
+            lineWidth += 0.01f;
+
+            brush.transform.localScale = new Vector3(newSize, brush.transform.localScale.y, newSize);
+        }
+    }
+
+    public void DecrementBrushWidth()
+    {
+        //Get current size
+        float currentSize = brush.transform.localScale.x;
+
+        //Get new size
+        float newSize = currentSize - 0.05f;
+
+        //If the new size is within the limits
+        if (newSize >= 0.3)
+        {
+            //Set brush width
+            lineWidth -= 0.01f;
+
+            brush.transform.localScale = new Vector3(newSize, brush.transform.localScale.y, newSize);
+        }
+        else
+            lineWidth = 0.005f;
     }
 
     //Gets and sets
