@@ -1,7 +1,7 @@
 *.blend1
 
-Unity/Factory Worker/Library/
+Unity/FactoryWorker/Library/
 
-Unity/Factory Worker/Builds/
+Unity/FactoryWorker/Builds/
 
-Unity/Factory Worker/Assets/Resources/Audio/
+Unity/FactoryWorker/Assets/Resources/Audio/
