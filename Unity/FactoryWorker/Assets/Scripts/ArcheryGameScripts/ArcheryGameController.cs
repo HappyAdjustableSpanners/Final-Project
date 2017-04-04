@@ -41,6 +41,9 @@ public class ArcheryGameController : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
+        //Start the music player
+        MusicPlayer.StartMusic(Resources.Load<AudioClip>("Audio/levelHubMusic"));
+
         PlayerPrefs.SetFloat("High Score", 100f);
         PlayerPrefs.SetFloat("Best Accuracy", 0f);
         //get disco lights

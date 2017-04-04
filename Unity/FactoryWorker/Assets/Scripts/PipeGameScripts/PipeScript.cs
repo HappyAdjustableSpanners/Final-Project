@@ -20,6 +20,7 @@ public class PipeScript : MonoBehaviour {
     }
     void OnTriggerEnter(Collider col)
     {
+        //If the pipe has not already been triggered
         if (!pipeReady)
         {
             //If the game ball has hit the collider
@@ -34,6 +35,7 @@ public class PipeScript : MonoBehaviour {
                 //Destroy the game ball
                 Destroy(col.gameObject);
 
+                //Set the pipe to ready
                 pipeReady = true;
 
                 //Check if all pipes have been hit

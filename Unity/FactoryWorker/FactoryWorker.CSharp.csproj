@@ -75,10 +75,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\ControllerHint.cs" />
-    <Compile Include="Assets\FadeInOutTextMesh.cs" />
-    <Compile Include="Assets\FadeScript.cs" />
-    <Compile Include="Assets\PainterGameManager.cs" />
+    <Compile Include="Assets\Deprecated\InteractableItem.cs" />
+    <Compile Include="Assets\Deprecated\WandController.cs" />
     <Compile Include="Assets\Resources\Prefabs\ColorPicker\ColorHuePicker.cs" />
     <Compile Include="Assets\Resources\Prefabs\ColorPicker\ColorIndicator.cs" />
     <Compile Include="Assets\Resources\Prefabs\ColorPicker\ColorSaturationBrightnessPicker.cs" />
@@ -91,16 +89,18 @@
     <Compile Include="Assets\Resources\Skyboxes\FarlandSkies\Demo\Scripts\Skybox\SkyboxRotator.cs" />
     <Compile Include="Assets\Scripts\ArcheryGameScripts\ArcheryGameController.cs" />
     <Compile Include="Assets\Scripts\ArcheryGameScripts\ArcheryTargetBehaviour.cs" />
-    <Compile Include="Assets\Scripts\GeneralScripts\GrabSphereBehaviour.cs" />
     <Compile Include="Assets\Scripts\GeneralScripts\HiResScreenShots.cs" />
-    <Compile Include="Assets\Scripts\GeneralScripts\ReadSceneNames.cs" />
     <Compile Include="Assets\Scripts\GeneralScripts\SinusoidalMovement.cs" />
+    <Compile Include="Assets\Scripts\LevelHubScripts\GrabSphereBehaviour.cs" />
+    <Compile Include="Assets\Scripts\LevelHubScripts\LevelHubGameController.cs" />
+    <Compile Include="Assets\Scripts\MusicScripts\MusicPlayer.cs" />
     <Compile Include="Assets\Scripts\PainterGameScripts\BrushScript.cs" />
     <Compile Include="Assets\Scripts\PainterGameScripts\ChangeColor.cs" />
     <Compile Include="Assets\Scripts\PainterGameScripts\ColorManager.cs" />
     <Compile Include="Assets\Scripts\PainterGameScripts\DrawLineManager.cs" />
     <Compile Include="Assets\Scripts\PainterGameScripts\EraserScript.cs" />
     <Compile Include="Assets\Scripts\PainterGameScripts\MeshLineRenderer.cs" />
+    <Compile Include="Assets\Scripts\PainterGameScripts\PainterGameManager.cs" />
     <Compile Include="Assets\Scripts\PipeGameScripts\DiscoLightsScript.cs" />
     <Compile Include="Assets\Scripts\PipeGameScripts\FloorBehaviour.cs" />
     <Compile Include="Assets\Scripts\PipeGameScripts\GameBallBehaviour.cs" />
@@ -111,21 +111,21 @@
     <Compile Include="Assets\Scripts\PipeGameScripts\RotateScript.cs" />
     <Compile Include="Assets\Scripts\PipeGameScripts\SwitchLevelScript.cs" />
     <Compile Include="Assets\Scripts\Plugins\openvr_api.cs" />
+    <Compile Include="Assets\Scripts\SceneManagementScripts\ReadSceneNames.cs" />
     <Compile Include="Assets\Scripts\SnowGameScripts\FetchBehaviour.cs" />
     <Compile Include="Assets\Scripts\SnowGameScripts\FloorScript.cs" />
     <Compile Include="Assets\Scripts\SnowGameScripts\LookAtPlayer.cs" />
     <Compile Include="Assets\Scripts\SnowGameScripts\NavMeshAgentScriptStatic.cs" />
+    <Compile Include="Assets\Scripts\SnowGameScripts\SnowGameController.cs" />
     <Compile Include="Assets\Scripts\SnowGameScripts\StickScript.cs" />
     <Compile Include="Assets\Scripts\SnowGameScripts\WhistleBehaviour.cs" />
     <Compile Include="Assets\Scripts\SnowGameScripts\WolfAnimationSelect.cs" />
     <Compile Include="Assets\Scripts\SnowGameScripts\WolfMove.cs" />
     <Compile Include="Assets\Scripts\SnowGameScripts\WolfWander.cs" />
-    <Compile Include="Assets\Scripts\VR\ControllerButtonEvents.cs" />
-    <Compile Include="Assets\Scripts\VR\DebugCameraScript.cs" />
-    <Compile Include="Assets\Scripts\VR\FadeScene.cs" />
-    <Compile Include="Assets\Scripts\VR\InteractableItem.cs" />
-    <Compile Include="Assets\Scripts\VR\WandController.cs" />
-    <Compile Include="Assets\SnowGameController.cs" />
+    <Compile Include="Assets\Scripts\UIScripts\FadeInOutTextMesh.cs" />
+    <Compile Include="Assets\Scripts\UIScripts\FadeScript.cs" />
+    <Compile Include="Assets\Scripts\UIScripts\TextLookAtPlayer.cs" />
+    <Compile Include="Assets\Scripts\VR\ControllerHint.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_LaserPointer.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_Teleporter.cs" />
@@ -229,13 +229,6 @@
     <Compile Include="Assets\SteamVR\Scripts\SteamVR_TrackedObject.cs" />
     <Compile Include="Assets\SteamVR\Scripts\SteamVR_UpdatePoses.cs" />
     <Compile Include="Assets\SteamVR\Scripts\SteamVR_Utils.cs" />
-    <Compile Include="Assets\TextLookAtPlayer.cs" />
-    <Compile Include="Assets\Vive-Teleporter\Scripts\BorderRenderer.cs" />
-    <Compile Include="Assets\Vive-Teleporter\Scripts\ParabolicPointer.cs" />
-    <Compile Include="Assets\Vive-Teleporter\Scripts\TeleportTest.cs" />
-    <Compile Include="Assets\Vive-Teleporter\Scripts\TeleportVive.cs" />
-    <Compile Include="Assets\Vive-Teleporter\Scripts\ViveNavMesh.cs" />
-    <Compile Include="Assets\Vive-Teleporter\Scripts\ViveNavMeshEditor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Resources\Fonts\luckiest-guy\FontShader.shader" />
@@ -245,8 +238,8 @@
     <None Include="Assets\Resources\Prefabs\ColorPicker\ColorSaturationBrightness.shader" />
     <None Include="Assets\Resources\Prefabs\ColorPicker\SolidColor.shader" />
     <None Include="Assets\Resources\Prefabs\ColorPicker\readme.txt" />
-    <None Include="Assets\Shaders\Dissolve.shader" />
-    <None Include="Assets\Shaders\DoubleSided.shader" />
+    <None Include="Assets\Resources\Shaders\Dissolve.shader" />
+    <None Include="Assets\Resources\Shaders\DoubleSided.shader" />
     <None Include="Assets\SteamVR\InteractionSystem\Core\Shaders\SeeThru.shader" />
     <None Include="Assets\SteamVR\InteractionSystem\Core\Shaders\Silhouette.shader" />
     <None Include="Assets\SteamVR\InteractionSystem\Hints\Shaders\ControllerButtonHints.shader" />
@@ -258,9 +251,6 @@
     <None Include="Assets\SteamVR\Resources\SteamVR_Fade.shader" />
     <None Include="Assets\SteamVR\Resources\SteamVR_SphericalProjection.shader" />
     <None Include="Assets\SteamVR\readme.txt" />
-    <None Include="Assets\Vive-Teleporter\Shader\FadeBlack.shader" />
-    <None Include="Assets\Vive-Teleporter\Shader\ViveMovementBorder.shader" />
-    <None Include="Assets\Vive-Teleporter\Shader\ViveMovementGrid.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

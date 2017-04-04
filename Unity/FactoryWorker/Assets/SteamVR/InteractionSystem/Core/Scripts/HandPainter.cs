@@ -701,6 +701,7 @@ namespace Valve.VR.InteractionSystem
             if(getMenuButtonDown())
             {
                 SteamVR_LoadLevel.Begin("levelhub", false, 0.5f, 0.0f, 0.0f, 0.0f, 1.0f);
+                MusicPlayer.StopMusic();
             }
 
             if (controller != null)

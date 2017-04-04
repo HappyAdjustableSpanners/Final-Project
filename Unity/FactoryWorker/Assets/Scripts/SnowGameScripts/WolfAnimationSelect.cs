@@ -53,7 +53,7 @@ public class WolfAnimationSelect : MonoBehaviour {
 
         //Get an initial howl delay
         currentHowlDelay = Random.Range(averageHowlDelay - howlDelayRange, averageHowlDelay + howlDelayRange);
-	}
+    }
 
     private void TriggerAnimation(State state)
     {

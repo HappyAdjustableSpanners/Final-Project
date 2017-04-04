@@ -138,8 +138,8 @@
     <None Include="Assets\Resources\Prefabs\ColorPicker\ColorSaturationBrightness.shader" />
     <None Include="Assets\Resources\Prefabs\ColorPicker\SolidColor.shader" />
     <None Include="Assets\Resources\Prefabs\ColorPicker\readme.txt" />
-    <None Include="Assets\Shaders\Dissolve.shader" />
-    <None Include="Assets\Shaders\DoubleSided.shader" />
+    <None Include="Assets\Resources\Shaders\Dissolve.shader" />
+    <None Include="Assets\Resources\Shaders\DoubleSided.shader" />
     <None Include="Assets\SteamVR\InteractionSystem\Core\Shaders\SeeThru.shader" />
     <None Include="Assets\SteamVR\InteractionSystem\Core\Shaders\Silhouette.shader" />
     <None Include="Assets\SteamVR\InteractionSystem\Hints\Shaders\ControllerButtonHints.shader" />
@@ -151,9 +151,6 @@
     <None Include="Assets\SteamVR\Resources\SteamVR_Fade.shader" />
     <None Include="Assets\SteamVR\Resources\SteamVR_SphericalProjection.shader" />
     <None Include="Assets\SteamVR\readme.txt" />
-    <None Include="Assets\Vive-Teleporter\Shader\FadeBlack.shader" />
-    <None Include="Assets\Vive-Teleporter\Shader\ViveMovementBorder.shader" />
-    <None Include="Assets\Vive-Teleporter\Shader\ViveMovementGrid.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

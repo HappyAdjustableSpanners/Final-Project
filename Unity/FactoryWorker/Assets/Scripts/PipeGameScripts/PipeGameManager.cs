@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEditor;
 
 public class PipeGameManager : MonoBehaviour {
 
@@ -30,7 +29,7 @@ public class PipeGameManager : MonoBehaviour {
 
     //Level management
     private bool[] levelsComplete;
-    private int numLevels = 15;
+    public static int numLevels = 15;
 
     //High score (Player prefs)
     private int topLevel;
@@ -41,13 +40,22 @@ public class PipeGameManager : MonoBehaviour {
     //Level select board
     private GameObject[] levelSquares = new GameObject[15];
 
+    //Level hub
+    private GameObject levelHub;
+
     private int currentLevel;
     private AudioSource audioSource;
-    private AudioClip failBeep;
-    private AudioClip winbeep;
+    private AudioClip failBeep, winbeep;
 
     void Awake()
     {
+        //Load the level hub model and spawn it 
+        levelHub = Resources.Load<GameObject>("Prefabs/level_hub");
+        Instantiate(levelHub, new Vector3(-2.46f, -5.94f, -2.54f), levelHub.transform.Find("LevelHubPos").transform.rotation);
+        
+        //Start the music player
+        MusicPlayer.StartMusic(Resources.Load<AudioClip>("Audio/painterGameMusic"));
+
         //Get pipes and platform game objects
         GameObject[] platforms = GameObject.FindGameObjectsWithTag("GamePlatform");
         GameObject[] pipes = GameObject.FindGameObjectsWithTag("GamePipe");
@@ -71,7 +79,7 @@ public class PipeGameManager : MonoBehaviour {
     void Start () {
 
         //Uncomment the line below to reset the top score from user prefs
-        //PlayerPrefs.SetInt("TopLevel", 0);
+        //PlayerPrefs.SetInt("TopLevel", 1);
 
         //Load in player prefs top level
         topLevel = PlayerPrefs.GetInt("TopLevel");
@@ -116,7 +124,7 @@ public class PipeGameManager : MonoBehaviour {
             levelSquares[i].GetComponent<Renderer>().material.color = Color.red;
         }
 
-   
+
         //Get the current level
         currentLevel = SceneManager.GetActiveScene().buildIndex - startLevel;
 
@@ -179,9 +187,9 @@ public class PipeGameManager : MonoBehaviour {
                 int index = SceneManager.GetActiveScene().buildIndex + 1;
 
                 //Check if we need to update our top level
-                if (index - startLevel > PlayerPrefs.GetInt("TopLevel"))
+                if (index < numLevels && index > PlayerPrefs.GetInt("TopLevel"))
                 {
-                    PlayerPrefs.SetInt("TopLevel", index - startLevel);
+                    PlayerPrefs.SetInt("TopLevel", index);
                 }
 
                 //If we are not at the final level, Load the scene using SteamVR_LoadLevel
@@ -199,7 +207,14 @@ public class PipeGameManager : MonoBehaviour {
                 Reset();
         }
         else
+        {
+            //Play win beep sound as we have triggered a new pipe
+            audioSource.clip = winbeep;
+            audioSource.Play();
+
+            //Spawn a new game ball
             SpawnGameBall();
+        }
     }
 
     public void LoadNextScene()
@@ -272,5 +287,11 @@ public class PipeGameManager : MonoBehaviour {
     public void PlatformReady()
     {
         platformsReady++;
+    }
+
+    //Return the top level 
+    public static int getTopLevel()
+    {
+        return PlayerPrefs.GetInt("TopLevel");
     }
 }
