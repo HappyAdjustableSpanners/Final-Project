@@ -691,7 +691,7 @@ namespace Valve.VR.InteractionSystem
 				hoveringInteractable.SendMessage( "HandHoverUpdate", this, SendMessageOptions.DontRequireReceiver );
 			}
 
-            if (getMenuButtonDown())
+            /*if (getMenuButtonDown())
             {
                 SteamVR_LoadLevel.Begin("levelhub", false, 0.5f, 0.0f, 0.0f, 0.0f, 1.0f);
                 MusicPlayer.StopMusic();
@@ -704,7 +704,7 @@ namespace Valve.VR.InteractionSystem
                     //Get fetch behaviour of wolf
                     GameObject.FindGameObjectWithTag("main_wolf").GetComponent<FetchBehaviour>().setDeliveringToPlayer(true);
                 }
-            }
+            }*/
         }
 
 
@@ -718,7 +718,7 @@ namespace Valve.VR.InteractionSystem
 			}
 		}
 
-        public bool getMenuButtonDown()
+        /*public bool getMenuButtonDown()
         {
             bool menuButtonDown = false;
 
@@ -741,7 +741,7 @@ namespace Valve.VR.InteractionSystem
             }
 
             return gripButtonDown;
-        }
+        }*/
     
 
 

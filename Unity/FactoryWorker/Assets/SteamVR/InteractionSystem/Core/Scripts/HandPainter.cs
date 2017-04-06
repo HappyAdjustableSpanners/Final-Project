@@ -74,12 +74,6 @@ namespace Valve.VR.InteractionSystem
 
 		private List<AttachedObject> attachedObjects = new List<AttachedObject>();
 
-        private Valve.VR.EVRButtonId menuButton = Valve.VR.EVRButtonId.k_EButton_ApplicationMenu;
-        private Valve.VR.EVRButtonId triggerButton = Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger;
-        private Valve.VR.EVRButtonId dPadRight = Valve.VR.EVRButtonId.k_EButton_DPad_Right;
-        private Valve.VR.EVRButtonId dPadLeft = Valve.VR.EVRButtonId.k_EButton_DPad_Left;
-        private Vector2 touchPadPos;
-
         public ReadOnlyCollection<AttachedObject> AttachedObjects
 		{
 			get { return attachedObjects.AsReadOnly(); }
@@ -703,33 +697,17 @@ namespace Valve.VR.InteractionSystem
                 SteamVR_LoadLevel.Begin("levelhub", false, 0.5f, 0.0f, 0.0f, 0.0f, 1.0f);
                 MusicPlayer.StopMusic();
             }
-
-            if (controller != null)
-            {
-                if (startingHandType == HandType.Right)
-                {
-                    drawLineManager.setTriggerDown(getTriggerDown());
-                    drawLineManager.setTriggerHold(getTriggerHeld());
-                }
-            }
-
-            //If the touch pad is pressed
-            if (getDPadLeftDown())
-            {
-                //Get coordinates of touch
-                //touchPadPos = controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_Axis0);
-
-                //Set the width to the x position of the touch pad press
-                //drawLineManager.setBrushWidth(touchPadPos);
-
-                drawLineManager.DecrementBrushWidth();
-            }
-            else if(getDPadRightDown())
-            {
-                drawLineManager.IncrementBrushWidth();
-            }
 		}
 
+        public bool getMenuButtonDown()
+        {
+            if (controller != null)
+            {
+                return controller.GetPressDown(Valve.VR.EVRButtonId.k_EButton_ApplicationMenu);
+            }
+            else
+                return false;
+        }
 
 		//-------------------------------------------------
 		void LateUpdate()
@@ -854,59 +832,79 @@ namespace Valve.VR.InteractionSystem
 			return false;
 		}
 
-        public bool getMenuButtonDown()
+        //-------------------------------------------------
+        // Was the standard interaction button just released? In VR, this is a trigger press. In 2D fallback, this is a mouse left-click.
+        //-------------------------------------------------
+        public bool GetStandardInteractionButtonUp()
         {
-            bool menuButtonDown = false;
-
-            if (controller != null)
+            if (noSteamVRFallbackCamera)
             {
-                menuButtonDown = controller.GetTouchDown(menuButton);
+                return Input.GetMouseButtonUp(0);
+            }
+            else if (controller != null)
+            {
+                return controller.GetHairTriggerUp();
             }
 
-            return menuButtonDown;
+            return false;
         }
 
-        public bool getTriggerDown()
+        //-------------------------------------------------
+        // Is the standard interaction button being pressed? In VR, this is a trigger press. In 2D fallback, this is a mouse left-click.
+        //-------------------------------------------------
+        public bool GetStandardInteractionButton()
         {
-            bool isTriggerDown = false;
-
-            if (controller != null)
+            if (noSteamVRFallbackCamera)
             {
-                isTriggerDown = controller.GetTouchDown(Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger);
+                return Input.GetMouseButton(0);
+            }
+            else if (controller != null)
+            {
+                return controller.GetHairTrigger();
             }
 
-            return isTriggerDown;
+            return false;
         }
 
-        public bool getTriggerHeld()
+        public SteamVR_Controller.Device getController()
         {
-            bool isTriggerHeld = false;
+            return controller;
+        }
 
+        public bool GetPressDown(Valve.VR.EVRButtonId buttonId)
+        {
             if (controller != null)
             {
-                isTriggerHeld = controller.GetTouch(Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger);
+                return controller.GetPressDown(buttonId);
             }
-
-            return isTriggerHeld;
+            else
+                return false;
         }
 
+        public bool GetPressUp(Valve.VR.EVRButtonId buttonId)
+        {
+            if (controller != null)
+            {
+                return controller.GetPressUp(buttonId);
+            }
+            else
+                return false;
+        }
 
-        //private bool getDPadTouch()
-        //{
-        //    bool isDPadTouched = false;
+        public bool GetTouch(Valve.VR.EVRButtonId buttonId)
+        {
+            if (controller != null)
+            {
+                return controller.GetTouch(buttonId);
+            }
+            else
+                return false;
+        }
 
-        //    if (controller != null)
-        //    {
-        //        isDPadTouched = controller.GetTouch(dPadLeft);
-        //    }
-
-        //    return isDPadTouched;
-        //}
-
-        private bool getDPadLeftDown()
+        public bool GetDPadTouchLeft()
         {
             Vector2 touchCoordsCart;
-            bool isDPadTouched = false;
+            bool isTouched = false;
 
             if (controller != null)
             {
@@ -916,21 +914,18 @@ namespace Valve.VR.InteractionSystem
 
                     if (touchCoordsCart.x < 0)
                     {
-                        return true;
+                        isTouched = true;
                     }
-                    else
-                        return false;
                 }
             }
 
-            
-            return isDPadTouched;
+            return isTouched;
         }
 
-        private bool getDPadRightDown()
+        public bool GetDPadTouchRight()
         {
             Vector2 touchCoordsCart;
-            bool isDPadTouched = false;
+            bool isTouched = false;
 
             if (controller != null)
             {
@@ -940,60 +935,16 @@ namespace Valve.VR.InteractionSystem
 
                     if (touchCoordsCart.x > 0)
                     {
-                        return true;
+                        isTouched = true;
                     }
-                    else
-                        return false;
                 }
             }
 
-            return isDPadTouched;
+            return isTouched;
         }
 
-
         //-------------------------------------------------
-        // Was the standard interaction button just released? In VR, this is a trigger press. In 2D fallback, this is a mouse left-click.
-        //-------------------------------------------------
-        public bool GetStandardInteractionButtonUp()
-		{
-			if ( noSteamVRFallbackCamera )
-			{
-				return Input.GetMouseButtonUp( 0 );
-			}
-			else if ( controller != null )
-			{
-				return controller.GetHairTriggerUp();
-			}
-
-			return false;
-		}
-
-
-		//-------------------------------------------------
-		// Is the standard interaction button being pressed? In VR, this is a trigger press. In 2D fallback, this is a mouse left-click.
-		//-------------------------------------------------
-		public bool GetStandardInteractionButton()
-		{
-			if ( noSteamVRFallbackCamera )
-			{
-				return Input.GetMouseButton( 0 );
-			}
-			else if ( controller != null )
-			{
-				return controller.GetHairTrigger();
-			}
-
-			return false;
-		}
-
-        public SteamVR_Controller.Device getController()
-        {
-            return controller;
-        }
-
-
-		//-------------------------------------------------
-		private void InitController( int index )
+        private void InitController( int index )
 		{
 			if ( controller == null )
 			{

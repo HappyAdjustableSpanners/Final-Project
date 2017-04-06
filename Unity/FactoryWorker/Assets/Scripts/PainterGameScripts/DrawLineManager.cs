@@ -4,27 +4,29 @@ using UnityEngine;
 
 public class DrawLineManager : MonoBehaviour {
 
-    public SteamVR_TrackedObject trackedObj;
+    public ControllerInputManager controllerInput;
+    public Valve.VR.InteractionSystem.HandPainter controller;
     public Material mat;
     public GameObject brushTip;
     public GameObject brush;
-    public ColorManager cm;
-    public bool colorPickerMode = true;
+
 
     private MeshLineRenderer line;
     private MeshCollider mc;
     private int numClicks = 0;
-    private bool triggerDown, triggerTouch;
-    private float brushWidth = 0.01f;
     private float lineWidth = 0.01f;
     private FadeInOutTextMesh[] textMeshFadeScripts;
     private FadeScript arrowFadeScript;
     public Transform brushTipTip;
+    private float brushWidthChangeSpeed = 0.0025f;
+    private float brushWidthMin = 0.005f;
+    private float brushWidthMax = 0.06f;
 
     public GameObject hand1;
 
     // Use this for initialization
     void Start () {
+        //Get text scripts
         arrowFadeScript = GameObject.Find("UI/GameHints/TextMesh/arrow").GetComponent<FadeScript>();
         textMeshFadeScripts = GameObject.Find("UI/GameHints").GetComponentsInChildren<FadeInOutTextMesh>();
 	}
@@ -32,8 +34,8 @@ public class DrawLineManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        //If the trigger is pressed
-        if (triggerDown)
+        //If the brush hand trigger is pressed, draw a line
+        if (controllerInput.triggerDown)
         {
             //Create the gamobject
             GameObject go = new GameObject();
@@ -60,46 +62,61 @@ public class DrawLineManager : MonoBehaviour {
             mat = brushTip.GetComponent<Renderer>().material;
             line.lmat = new Material(mat);
 
-            Debug.Log(lineWidth);
-
             //Set width of the line
             line.setWidth(lineWidth);
                 
             //Init num clicks to 0
             numClicks = 0;
         }
-        else if (triggerTouch)    //if held down
+        else if(controllerInput.triggerTouch)
         {
-            //While the trigger is held, keep adding points to the line
-            line.AddPoint(brushTipTip.position);
+            if (line != null)
+            {
+                //Set width of the line
+                line.setWidth(lineWidth);
 
-            //Increment numclicks
-            numClicks++;
+                //While the trigger is held, keep adding points to the line
+                line.AddPoint(brushTipTip.position);
 
-            //Set convex to true. We do this every time we add a point as it updates the convex mesh
+                //Increment numclicks
+                numClicks++;
+            }             
+        }
+
+        if (controller.GetPressUp(Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger))
+        {
             mc.convex = true;
+
+            if(line)
+            {
+                line = null;
+            }
         }
 
-        //If we are using the color picker, set the color of the brush instead to the color specified by our color manager
-        if (colorPickerMode)
+        if ( controllerInput.dPadLeftTouch )
         {
-            brushTip.GetComponent<Renderer>().material.color = cm.color;
+            DecrementBrushWidth();
         }
-	}
+
+        if( controllerInput.dPadRightTouch )
+        {
+            IncrementBrushWidth();
+        }      
+    }
 
     public void IncrementBrushWidth()
     {
-        //Get current size
-        float currentSize = brush.transform.localScale.x;
-
-        //Get new size
-        float newSize = currentSize + 0.05f;
-        
         //If the new size is within the limits
-        if (newSize <= 0.9)
+        if (lineWidth < brushWidthMax )
         {
             //Set brush width
-            lineWidth += 0.0025f;
+            lineWidth += brushWidthChangeSpeed;
+
+            //Get current size
+            float currentSize = brush.transform.localScale.x;
+
+            //Get new size
+            float newSize = currentSize + 0.03f;
 
             brush.transform.localScale = new Vector3(newSize, brush.transform.localScale.y, newSize);
         }
@@ -117,42 +134,19 @@ public class DrawLineManager : MonoBehaviour {
 
     public void DecrementBrushWidth()
     {
-        //Get current size
-        float currentSize = brush.transform.localScale.x;
-
-        //Get new size
-        float newSize = currentSize - 0.05f;
-
         //If the new size is within the limits
-        if (newSize >= 0.3)
+        if (lineWidth > brushWidthMin)
         {
             //Set brush width
-            lineWidth -= 0.0025f;
+            lineWidth -= brushWidthChangeSpeed;
+
+            //Get current size
+            float currentSize = brush.transform.localScale.x;
+
+            //Get new size
+            float newSize = currentSize - 0.03f;
 
             brush.transform.localScale = new Vector3(newSize, brush.transform.localScale.y, newSize);
         }
-        //else
-            //lineWidth = 0.001f;
-    }
-
-    //Gets and sets
-    public void setTriggerDown(bool value)
-    {
-        triggerDown = value;
-    }
-
-    public bool getTriggerDown()
-    {
-        return triggerDown;
-    }
-
-    public void setTriggerHold(bool value)
-    {
-        triggerTouch = value;
-    }
-
-    public bool getTriggerHold()
-    {
-        return triggerTouch;
     }
 }

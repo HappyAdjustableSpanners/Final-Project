@@ -4,21 +4,13 @@ using UnityEngine;
 
 public class EraserScript : MonoBehaviour {
 
-    public Valve.VR.InteractionSystem.HandPainter hand2;
+    //Controller
+    public ControllerInputManager controller;
 
-	// Use this for initialization
-	void Start () {
-	    	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
+    //When the eraser collides with a line, remove it
     void OnTriggerStay(Collider col)
     {
-        if(hand2.getTriggerHeld() && col.gameObject.CompareTag("Line") )
+        if(controller.triggerTouch && col.gameObject.CompareTag("Line") )
         {
             Destroy(col.gameObject);
         }

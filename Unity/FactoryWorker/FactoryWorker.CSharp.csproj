@@ -75,8 +75,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\ControllerInputManager.cs" />
     <Compile Include="Assets\Deprecated\InteractableItem.cs" />
     <Compile Include="Assets\Deprecated\WandController.cs" />
+    <Compile Include="Assets\Deprecated\WolfMove.cs" />
     <Compile Include="Assets\Resources\Prefabs\ColorPicker\ColorHuePicker.cs" />
     <Compile Include="Assets\Resources\Prefabs\ColorPicker\ColorIndicator.cs" />
     <Compile Include="Assets\Resources\Prefabs\ColorPicker\ColorSaturationBrightnessPicker.cs" />
@@ -95,8 +97,6 @@
     <Compile Include="Assets\Scripts\LevelHubScripts\LevelHubGameController.cs" />
     <Compile Include="Assets\Scripts\MusicScripts\MusicPlayer.cs" />
     <Compile Include="Assets\Scripts\PainterGameScripts\BrushScript.cs" />
-    <Compile Include="Assets\Scripts\PainterGameScripts\ChangeColor.cs" />
-    <Compile Include="Assets\Scripts\PainterGameScripts\ColorManager.cs" />
     <Compile Include="Assets\Scripts\PainterGameScripts\DrawLineManager.cs" />
     <Compile Include="Assets\Scripts\PainterGameScripts\EraserScript.cs" />
     <Compile Include="Assets\Scripts\PainterGameScripts\MeshLineRenderer.cs" />
@@ -115,12 +115,10 @@
     <Compile Include="Assets\Scripts\SnowGameScripts\FetchBehaviour.cs" />
     <Compile Include="Assets\Scripts\SnowGameScripts\FloorScript.cs" />
     <Compile Include="Assets\Scripts\SnowGameScripts\LookAtPlayer.cs" />
-    <Compile Include="Assets\Scripts\SnowGameScripts\NavMeshAgentScriptStatic.cs" />
     <Compile Include="Assets\Scripts\SnowGameScripts\SnowGameController.cs" />
     <Compile Include="Assets\Scripts\SnowGameScripts\StickScript.cs" />
     <Compile Include="Assets\Scripts\SnowGameScripts\WhistleBehaviour.cs" />
     <Compile Include="Assets\Scripts\SnowGameScripts\WolfAnimationSelect.cs" />
-    <Compile Include="Assets\Scripts\SnowGameScripts\WolfMove.cs" />
     <Compile Include="Assets\Scripts\SnowGameScripts\WolfWander.cs" />
     <Compile Include="Assets\Scripts\UIScripts\FadeInOutTextMesh.cs" />
     <Compile Include="Assets\Scripts\UIScripts\FadeScript.cs" />
