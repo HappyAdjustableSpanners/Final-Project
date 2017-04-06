@@ -48,6 +48,9 @@ public class FetchBehaviour : MonoBehaviour {
 
         //Player head cam
         playerHeadCam = GameObject.Find("Player").transform.Find("SteamVRObjects/VRCamera/FollowHead").gameObject;
+
+        //Player position
+        playerPos = playerHeadCam.transform;
     }
 	
 	// Update is called once per frame

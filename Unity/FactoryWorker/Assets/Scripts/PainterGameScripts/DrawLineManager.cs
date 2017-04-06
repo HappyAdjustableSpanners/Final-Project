@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class DrawLineManager : MonoBehaviour {
 
-    public ControllerInputManager controllerInput;
-    public Valve.VR.InteractionSystem.HandPainter controller;
+    private ControllerInputManager controllerInput;
+    public Valve.VR.InteractionSystem.Hand controller;
     public Material mat;
     public GameObject brushTip;
     public GameObject brush;
-
+    public Transform brushPaintSpawnLocation;
 
     private MeshLineRenderer line;
     private MeshCollider mc;
@@ -17,15 +17,15 @@ public class DrawLineManager : MonoBehaviour {
     private float lineWidth = 0.01f;
     private FadeInOutTextMesh[] textMeshFadeScripts;
     private FadeScript arrowFadeScript;
-    public Transform brushTipTip;
     private float brushWidthChangeSpeed = 0.0025f;
     private float brushWidthMin = 0.005f;
     private float brushWidthMax = 0.06f;
 
-    public GameObject hand1;
-
     // Use this for initialization
     void Start () {
+        //Get controller input script
+        controllerInput = controller.GetComponent<ControllerInputManager>();
+
         //Get text scripts
         arrowFadeScript = GameObject.Find("UI/GameHints/TextMesh/arrow").GetComponent<FadeScript>();
         textMeshFadeScripts = GameObject.Find("UI/GameHints").GetComponentsInChildren<FadeInOutTextMesh>();
@@ -76,7 +76,7 @@ public class DrawLineManager : MonoBehaviour {
                 line.setWidth(lineWidth);
 
                 //While the trigger is held, keep adding points to the line
-                line.AddPoint(brushTipTip.position);
+                line.AddPoint(brushPaintSpawnLocation.position);
 
                 //Increment numclicks
                 numClicks++;

@@ -25,6 +25,10 @@ public class LookAtPlayer : MonoBehaviour {
         origX = head_bone.transform.localEulerAngles.x;
         origY = head_bone.transform.localEulerAngles.y;
         origZ = head_bone.transform.localEulerAngles.z;
+
+        //Set target
+        target = GameObject.Find("Player").transform.Find("SteamVRObjects/VRCamera/FollowHead").gameObject;
+        
     }
         
 	

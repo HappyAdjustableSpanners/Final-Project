@@ -32,13 +32,16 @@ public class MusicPlayer : MonoBehaviour {
     {
         if (!AudioPlaying)
         {
-            //Load the specified clip
-            audio.clip = audioClip;
-            //Play the audio
-            audio.Play();
+            if (audio)
+            {
+                //Load the specified clip
+                audio.clip = audioClip;
+                //Play the audio
+                audio.Play();
 
-            //Set audio playing to true
-            AudioPlaying = true;
+                //Set audio playing to true
+                AudioPlaying = true;
+            }
         }
     }
 

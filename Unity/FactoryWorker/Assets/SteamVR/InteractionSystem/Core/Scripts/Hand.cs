@@ -9,7 +9,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using UnityEngine.SceneManagement;
 
 namespace Valve.VR.InteractionSystem
 {
@@ -71,10 +70,7 @@ namespace Valve.VR.InteractionSystem
 
 		private List<AttachedObject> attachedObjects = new List<AttachedObject>();
 
-        private Valve.VR.EVRButtonId menuButton = Valve.VR.EVRButtonId.k_EButton_ApplicationMenu;
-        private Valve.VR.EVRButtonId gripButton = Valve.VR.EVRButtonId.k_EButton_Grip;
-
-        public ReadOnlyCollection<AttachedObject> AttachedObjects
+		public ReadOnlyCollection<AttachedObject> AttachedObjects
 		{
 			get { return attachedObjects.AsReadOnly(); }
 		}
@@ -92,6 +88,8 @@ namespace Valve.VR.InteractionSystem
 		private Player playerInstance;
 
 		private GameObject applicationLostFocusObject;
+
+        private EVRButtonId menuID = Valve.VR.EVRButtonId.k_EButton_ApplicationMenu;
 
 		SteamVR_Events.Action inputFocusAction;
 
@@ -691,21 +689,15 @@ namespace Valve.VR.InteractionSystem
 				hoveringInteractable.SendMessage( "HandHoverUpdate", this, SendMessageOptions.DontRequireReceiver );
 			}
 
-            /*if (getMenuButtonDown())
+            //Check if menu button pressed
+            if (controller != null)
             {
-                SteamVR_LoadLevel.Begin("levelhub", false, 0.5f, 0.0f, 0.0f, 0.0f, 1.0f);
-                MusicPlayer.StopMusic();
-            }
-
-            if(getGripButtonDown())
-            {
-                if( SceneManager.GetActiveScene().name == "SnowGame1")
+                if (controller.GetPressDown(menuID))
                 {
-                    //Get fetch behaviour of wolf
-                    GameObject.FindGameObjectWithTag("main_wolf").GetComponent<FetchBehaviour>().setDeliveringToPlayer(true);
+                    SteamVR_LoadLevel.Begin("levelhub", false, 0.5f, 0f, 0f, 0f, 1f);
                 }
-            }*/
-        }
+            }
+		}
 
 
 		//-------------------------------------------------
@@ -718,35 +710,9 @@ namespace Valve.VR.InteractionSystem
 			}
 		}
 
-        /*public bool getMenuButtonDown()
-        {
-            bool menuButtonDown = false;
 
-            if (controller != null)
-            {
-                menuButtonDown = controller.GetTouchDown(menuButton);
-            }
-
-            return menuButtonDown;
-        }
-
-        public bool getGripButtonDown()
-        {
-
-            bool gripButtonDown = false;
-
-            if (controller != null)
-            {
-                gripButtonDown = controller.GetTouchDown(gripButton);
-            }
-
-            return gripButtonDown;
-        }*/
-    
-
-
-        //-------------------------------------------------
-        private void OnInputFocus( bool hasFocus )
+		//-------------------------------------------------
+		private void OnInputFocus( bool hasFocus )
 		{
 			if ( hasFocus )
 			{
@@ -893,9 +859,80 @@ namespace Valve.VR.InteractionSystem
 			return false;
 		}
 
+        public bool GetPressDown(Valve.VR.EVRButtonId buttonId)
+        {
+            if (controller != null)
+            {
+                return controller.GetPressDown(buttonId);
+            }
+            else
+                return false;
+        }
 
-		//-------------------------------------------------
-		private void InitController( int index )
+        public bool GetPressUp(Valve.VR.EVRButtonId buttonId)
+        {
+            if (controller != null)
+            {
+                return controller.GetPressUp(buttonId);
+            }
+            else
+                return false;
+        }
+
+        public bool GetTouch(Valve.VR.EVRButtonId buttonId)
+        {
+            if (controller != null)
+            {
+                return controller.GetTouch(buttonId);
+            }
+            else
+                return false;
+        }
+
+        public bool GetDPadTouchLeft()
+        {
+            Vector2 touchCoordsCart;
+            bool isTouched = false;
+
+            if (controller != null)
+            {
+                if (controller.GetTouch(Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad))
+                {
+                    touchCoordsCart = controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_Axis0);
+
+                    if (touchCoordsCart.x < 0)
+                    {
+                        isTouched = true;
+                    }
+                }
+            }
+
+            return isTouched;
+        }
+
+        public bool GetDPadTouchRight()
+        {
+            Vector2 touchCoordsCart;
+            bool isTouched = false;
+
+            if (controller != null)
+            {
+                if (controller.GetTouch(Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad))
+                {
+                    touchCoordsCart = controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_Axis0);
+
+                    if (touchCoordsCart.x > 0)
+                    {
+                        isTouched = true;
+                    }
+                }
+            }
+
+            return isTouched;
+        }
+
+        //-------------------------------------------------
+        private void InitController( int index )
 		{
 			if ( controller == null )
 			{

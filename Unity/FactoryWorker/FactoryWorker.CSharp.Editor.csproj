@@ -134,10 +134,6 @@
     <None Include="Assets\Resources\Fonts\luckiest-guy\FontShader.shader" />
     <None Include="Assets\Resources\Fonts\luckiest-guy\LICENSE.txt" />
     <None Include="Assets\Resources\Icons\ColorfulButtons\Credits.txt" />
-    <None Include="Assets\Resources\Prefabs\ColorPicker\ColorHue.shader" />
-    <None Include="Assets\Resources\Prefabs\ColorPicker\ColorSaturationBrightness.shader" />
-    <None Include="Assets\Resources\Prefabs\ColorPicker\SolidColor.shader" />
-    <None Include="Assets\Resources\Prefabs\ColorPicker\readme.txt" />
     <None Include="Assets\Resources\Shaders\Dissolve.shader" />
     <None Include="Assets\Resources\Shaders\DoubleSided.shader" />
     <None Include="Assets\SteamVR\InteractionSystem\Core\Shaders\SeeThru.shader" />

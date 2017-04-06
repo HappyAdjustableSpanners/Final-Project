@@ -7,6 +7,11 @@ public class EraserScript : MonoBehaviour {
     //Controller
     public ControllerInputManager controller;
 
+    void Start()
+    {
+        controller = transform.parent.GetComponent<ControllerInputManager>();
+    }
+
     //When the eraser collides with a line, remove it
     void OnTriggerStay(Collider col)
     {

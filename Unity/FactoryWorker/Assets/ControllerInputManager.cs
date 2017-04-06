@@ -22,7 +22,7 @@ public class ControllerInputManager : MonoBehaviour {
     public bool menuUp    = false;
 
     //Controller 
-    public Valve.VR.InteractionSystem.HandPainter controller;
+    public Valve.VR.InteractionSystem.Hand controller;
 
     //Button ids
     private Valve.VR.EVRButtonId trigger = Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger;
@@ -31,7 +31,7 @@ public class ControllerInputManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
+        controller = GetComponent<Valve.VR.InteractionSystem.Hand>();
 	}
 
     // Update is called once per frame

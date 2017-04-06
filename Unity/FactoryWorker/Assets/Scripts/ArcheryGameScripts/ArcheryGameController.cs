@@ -100,7 +100,10 @@ public class ArcheryGameController : MonoBehaviour {
 
         if(win)
         {
-            balloon.transform.position = Vector3.Lerp(balloon.transform.position, balloonTransform.position, Time.deltaTime);
+            if (balloon)
+            {
+                balloon.transform.position = Vector3.Lerp(balloon.transform.position, balloonTransform.position, Time.deltaTime);
+            }
         }
     }
 
