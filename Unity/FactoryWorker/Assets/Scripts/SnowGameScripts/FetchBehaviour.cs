@@ -25,8 +25,7 @@ public class FetchBehaviour : MonoBehaviour {
     //Our Nav Mesh agent component
     private UnityEngine.AI.NavMeshAgent navMeshAgent;
 
-    private InteractableItem stickInteractableItemBehaviour;
-
+    //Look at player script
     private LookAtPlayer lookAtPlayer;
 
     // Use this for initialization

@@ -23,6 +23,9 @@ public class ArcheryGameController : MonoBehaviour {
     private TextMesh currentScoreText;
     private TextMesh currentAccuracyText;
 
+    //Arrow fade scripts
+    private FadeScript arrowHighScore, arrowBestAccuracy;
+
     //Longbow asset
     private Valve.VR.InteractionSystem.Longbow longBow;
    
@@ -32,11 +35,12 @@ public class ArcheryGameController : MonoBehaviour {
     private AudioClip applause;
 
     //Win
-    private Light discoLights, mainLight;
+    private Light discoLights;
     public GameObject balloon;
     private Valve.VR.InteractionSystem.Balloon balloonScript;
     public Transform balloonTransform;
     public bool win = false;
+    
 
     // Use this for initialization
     void Start () {
@@ -44,12 +48,15 @@ public class ArcheryGameController : MonoBehaviour {
         //Start the music player
         MusicPlayer.StartMusic(Resources.Load<AudioClip>("Audio/levelHubMusic"));
 
+        //Set the high scores
         PlayerPrefs.SetFloat("High Score", 100f);
         PlayerPrefs.SetFloat("Best Accuracy", 0f);
-        //get disco lights
-        mainLight = GameObject.Find("Environment/Directional light").GetComponent<Light>();
+
+        //Lights
         discoLights = GameObject.Find("Win").GetComponent<Light>();
         discoLights.enabled = false;
+
+        //Balloon
         balloonScript = balloon.GetComponent<Valve.VR.InteractionSystem.Balloon>();
         balloonScript.enabled = false;
         balloon.SetActive(false);
@@ -84,24 +91,32 @@ public class ArcheryGameController : MonoBehaviour {
         audioSource = GetComponent<AudioSource>();
         successBeep = Resources.Load<AudioClip>("Audio/win_beep");
         applause = Resources.Load<AudioClip>("Audio/applause");
-	}
+
+        //Get arrow fade scripts
+        arrowHighScore = GameObject.Find("GameLevel").transform.Find("Arrows/Arrow/arrow").GetComponent<FadeScript>();
+        arrowBestAccuracy = GameObject.Find("GameLevel").transform.Find("Arrows/Arrow2/arrow").GetComponent<FadeScript>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
 
-        //Increment the timer
-        if (targetIndex > 0)
+        if (!win)
         {
-            timer += Time.deltaTime;
+            //Increment the timer
+            if (targetIndex > 0)
+            {
+                timer += Time.deltaTime;
+            }
+
+            //Update the current score billboard
+            currentScoreText.text = Mathf.Round(timer).ToString();
         }
-
-        //Update the current score billboard
-        currentScoreText.text = Mathf.Round(timer).ToString();
-
-        if(win)
-        {
+        else
+        { 
+            //If we have won
             if (balloon)
             {
+                //Move balloon down from the sky to the ground
                 balloon.transform.position = Vector3.Lerp(balloon.transform.position, balloonTransform.position, Time.deltaTime);
             }
         }
@@ -134,15 +149,29 @@ public class ArcheryGameController : MonoBehaviour {
         {
             if (timer < PlayerPrefs.GetFloat("High Score") || accuracy > PlayerPrefs.GetFloat("Best Accuracy"))
             {
+                //Play applause sound
                 audioSource.clip = applause;
                 audioSource.Play();
-                discoLights.enabled = true;
-                mainLight.enabled = false;
 
+                //Enable disco lights and disable main light
+                discoLights.enabled = true;
+
+                //Enable balloon behaviours
                 balloonScript.enabled = true;
                 balloon.SetActive(true);
 
+                //Set win to true
                 win = true;
+
+                if(timer < PlayerPrefs.GetFloat("High Score"))
+                {
+                    arrowHighScore.FadeIn();
+                }
+
+                if (accuracy > PlayerPrefs.GetFloat("Best Accuracy"))
+                {
+                    arrowBestAccuracy.FadeIn();
+                }
             }
 
             //Update best time
@@ -158,9 +187,6 @@ public class ArcheryGameController : MonoBehaviour {
                 //Set the new accuracy high score
                 PlayerPrefs.SetFloat("Best Accuracy", accuracy);
             }
-
-            //We have hit all targets
-            //SteamVR_LoadLevel.Begin("levelhub", false, 0.5f, 0.0f, 0.0f, 0.0f, 1.0f);
         }
     }
 

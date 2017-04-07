@@ -37,6 +37,7 @@ public class ControllerInputManager : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        //Trigger presses
         if (controller.GetPressDown(trigger))
         {
             triggerDown = true;
@@ -51,6 +52,7 @@ public class ControllerInputManager : MonoBehaviour {
         else
             triggerTouch = false;
 
+        //Dpad presses
         if (controller.GetTouch(dPad))
         {
             dPadTouch = true;
@@ -72,6 +74,7 @@ public class ControllerInputManager : MonoBehaviour {
         else
             dPadRightTouch = false;
            
+        //Menu button presses
         if (controller.GetTouch(menu))
         {
             menuTouch = true;

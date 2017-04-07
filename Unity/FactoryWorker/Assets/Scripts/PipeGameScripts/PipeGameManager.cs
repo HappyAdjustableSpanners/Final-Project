@@ -6,15 +6,17 @@ using UnityEngine.SceneManagement;
 public class PipeGameManager : MonoBehaviour {
 
     //Easy build levels. Just build a level, and enter the number of pipes and platforms
-    public int numPipes = 3;
-    public int numPlatforms = 3;
+    public int numPipes = 0;
+    public int numPlatforms = 0;
+    public int numObstacles = 0;
 
     //Pipe and platform game objects
     private GameObject[] platforms;
     private GameObject[] pipes;
+    private GameObject[] obstacles;
 
     //Keep track of how many pipes and platforms are ready
-    private int pipesReady, platformsReady = 0;
+    private int pipesReady, platformsReady, obstaclesReady = 0;
 
     //Pipe spawn script
     private PipeSpawnScript pipeSpawnScript;
@@ -43,6 +45,9 @@ public class PipeGameManager : MonoBehaviour {
     //Level hub
     private GameObject levelHub;
 
+    //Grab sphere
+    private GameObject grabSphere;
+
     private int currentLevel;
     private AudioSource audioSource;
     private AudioClip failBeep, winbeep;
@@ -57,8 +62,9 @@ public class PipeGameManager : MonoBehaviour {
         MusicPlayer.StartMusic(Resources.Load<AudioClip>("Audio/painterGameMusic"));
 
         //Get pipes and platform game objects
-        GameObject[] platforms = GameObject.FindGameObjectsWithTag("GamePlatform");
-        GameObject[] pipes = GameObject.FindGameObjectsWithTag("GamePipe");
+        platforms = GameObject.FindGameObjectsWithTag("GamePlatform");
+        pipes = GameObject.FindGameObjectsWithTag("GamePipe");
+        obstacles = GameObject.FindGameObjectsWithTag("GameObstacle");
 
         //Attach audio sources to game controller and spawn pipe
         GameObject.FindGameObjectWithTag("GameController").AddComponent<AudioSource>();
@@ -74,6 +80,11 @@ public class PipeGameManager : MonoBehaviour {
         {
             go.AddComponent<AudioSource>();
         }
+
+        foreach(GameObject go in obstacles)
+        {
+            go.AddComponent<AudioSource>();
+        }
     }
     // Use this for initialization
     void Start () {
@@ -85,10 +96,9 @@ public class PipeGameManager : MonoBehaviour {
         topLevel = PlayerPrefs.GetInt("TopLevel");
 
         //Find pipes and platforms, and count them
-        platforms = GameObject.FindGameObjectsWithTag("GamePlatform");
-        pipes = GameObject.FindGameObjectsWithTag("GamePipe");
         numPipes = pipes.Length;
         numPlatforms = platforms.Length;
+        numObstacles = obstacles.Length;
 
         //Spawn the game ball initially
         pipeSpawnScript = GameObject.FindGameObjectWithTag("SpawnPipe").GetComponent<PipeSpawnScript>();
@@ -124,7 +134,6 @@ public class PipeGameManager : MonoBehaviour {
             levelSquares[i].GetComponent<Renderer>().material.color = Color.red;
         }
 
-
         //Get the current level
         currentLevel = SceneManager.GetActiveScene().buildIndex - startLevel;
 
@@ -138,7 +147,13 @@ public class PipeGameManager : MonoBehaviour {
         failBeep = Resources.Load<AudioClip>("Audio/fail_beep");
         winbeep = Resources.Load<AudioClip>("Audio/win_beep2");
 
-        SetUpScene();       
+        //Spawn grab sphere
+        Transform grabSphereSpawnPos = Resources.Load<Transform>("Prefabs/GrabSpherePosition").transform;
+        GameObject grabSphere = Instantiate(Resources.Load<GameObject>("Prefabs/GrabSphere"), grabSphereSpawnPos.position, grabSphereSpawnPos.rotation);
+        grabSphere.tag = "levelhub";
+
+        SetUpScene(); 
+              
     }
 
     private void SetUpScene()
@@ -167,7 +182,7 @@ public class PipeGameManager : MonoBehaviour {
         if (pipesReady == numPipes)
         {
             //If all platforms are ready
-            if (platformsReady == numPlatforms)
+            if (platformsReady == numPlatforms && obstaclesReady == numObstacles)
             {
                 ready = true;
             }
@@ -189,7 +204,7 @@ public class PipeGameManager : MonoBehaviour {
                 //Check if we need to update our top level
                 if (index < numLevels && index > PlayerPrefs.GetInt("TopLevel"))
                 {
-                    PlayerPrefs.SetInt("TopLevel", index);
+                    PlayerPrefs.SetInt("TopLevel", index + 1);
                 }
 
                 //If we are not at the final level, Load the scene using SteamVR_LoadLevel
@@ -256,6 +271,7 @@ public class PipeGameManager : MonoBehaviour {
         //Reset num pipes ready and num platforms ready to 0
         pipesReady = 0;
         platformsReady = 0;
+        obstaclesReady = 0;
 
         //Reset all platforms and pipes
         foreach (GameObject go in platforms)
@@ -268,6 +284,12 @@ public class PipeGameManager : MonoBehaviour {
         {
             //This will change the go color back to red
             go.GetComponent<PipeScript>().Reset();
+        }
+
+        foreach (GameObject go in obstacles)
+        {
+            //This will change the go color back to red
+            go.GetComponent<ObstacleScript>().Reset();
         }
     }
 
@@ -287,6 +309,12 @@ public class PipeGameManager : MonoBehaviour {
     public void PlatformReady()
     {
         platformsReady++;
+    }
+
+    //Signal that an obstacle is ready
+    public void ObstacleReady()
+    {
+        obstaclesReady++;
     }
 
     //Return the top level 

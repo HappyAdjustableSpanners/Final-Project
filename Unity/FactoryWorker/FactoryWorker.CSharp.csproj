@@ -79,6 +79,7 @@
     <Compile Include="Assets\Deprecated\InteractableItem.cs" />
     <Compile Include="Assets\Deprecated\WandController.cs" />
     <Compile Include="Assets\Deprecated\WolfMove.cs" />
+    <Compile Include="Assets\ObstacleScript.cs" />
     <Compile Include="Assets\Resources\Skyboxes\FarlandSkies\Demo\Scripts\Player\FPSWalkerEnhanced.cs" />
     <Compile Include="Assets\Resources\Skyboxes\FarlandSkies\Demo\Scripts\Player\SmoothMouseLook.cs" />
     <Compile Include="Assets\Resources\Skyboxes\FarlandSkies\Demo\Scripts\Skybox\SkyboxChanger.cs" />

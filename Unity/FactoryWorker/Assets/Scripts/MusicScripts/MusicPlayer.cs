@@ -46,11 +46,13 @@ public class MusicPlayer : MonoBehaviour {
     }
 
     public static void StopMusic() {
+        if (audio)
+        {
+            //Stop the audio
+            audio.Stop();
 
-        //Stop the audio
-        audio.Stop();
-
-        //Set audio playing to false;
-        AudioPlaying = false;
+            //Set audio playing to false;
+            AudioPlaying = false;
+        }
     }
 }

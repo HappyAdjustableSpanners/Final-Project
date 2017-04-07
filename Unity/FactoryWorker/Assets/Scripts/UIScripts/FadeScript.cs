@@ -12,13 +12,17 @@ public class FadeScript : MonoBehaviour {
 
     private Color fadeOutColor, fadeInColor;
 
+    private float orig_alpha;
+
 	// Use this for initialization
 	void Start () {
 
         rend = GetComponentInChildren<Renderer>();
 
+        orig_alpha = rend.material.GetColor("_TintColor").a;
+
         fadeOutColor = new Color(rend.material.GetColor("_TintColor").r, rend.material.GetColor("_TintColor").g, rend.material.GetColor("_TintColor").b, -1f);
-        fadeInColor = new Color(rend.material.GetColor("_TintColor").r, rend.material.GetColor("_TintColor").g, rend.material.GetColor("_TintColor").b, 1f);
+        fadeInColor = new Color(rend.material.GetColor("_TintColor").r, rend.material.GetColor("_TintColor").g, rend.material.GetColor("_TintColor").b, orig_alpha);
     }
 	
 	// Update is called once per frame
