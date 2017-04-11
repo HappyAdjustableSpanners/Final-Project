@@ -146,11 +146,13 @@ public class PipeGameManager : MonoBehaviour {
         //Get audio clip from resources and load it
         failBeep = Resources.Load<AudioClip>("Audio/fail_beep");
         winbeep = Resources.Load<AudioClip>("Audio/win_beep2");
+        audioSource.volume = 0.3f;
 
         //Spawn grab sphere
         Transform grabSphereSpawnPos = Resources.Load<Transform>("Prefabs/GrabSpherePosition").transform;
         GameObject grabSphere = Instantiate(Resources.Load<GameObject>("Prefabs/GrabSphere"), grabSphereSpawnPos.position, grabSphereSpawnPos.rotation);
         grabSphere.tag = "levelhub";
+
 
         SetUpScene(); 
               
@@ -195,7 +197,6 @@ public class PipeGameManager : MonoBehaviour {
 
                 //Play win audio
                 audioSource.clip = winbeep;
-                audioSource.volume = 0.5f;
                 audioSource.Play();
 
                 //Get next scene index
@@ -204,7 +205,7 @@ public class PipeGameManager : MonoBehaviour {
                 //Check if we need to update our top level
                 if (index < numLevels && index > PlayerPrefs.GetInt("TopLevel"))
                 {
-                    PlayerPrefs.SetInt("TopLevel", index + 1);
+                    PlayerPrefs.SetInt("TopLevel", index);
                 }
 
                 //If we are not at the final level, Load the scene using SteamVR_LoadLevel
@@ -238,7 +239,7 @@ public class PipeGameManager : MonoBehaviour {
         int index = SceneManager.GetActiveScene().buildIndex + 1;
 
         //Check if this index is not past our top level and this is not our final level
-        if( index < (startLevel + topLevel + 1) && index != finalLevel)
+        if( index < (startLevel + topLevel) && index != finalLevel)
         {
             SteamVR_LoadLevel.Begin(sceneNames[index], false, 0.5f, 0.0f, 0.0f, 0.0f, 1.0f);
         }
@@ -262,7 +263,6 @@ public class PipeGameManager : MonoBehaviour {
     {
         //Play audio
         audioSource.clip = failBeep;
-        audioSource.volume = 0.5f;
         audioSource.Play();
 
         //Spawn a new ball

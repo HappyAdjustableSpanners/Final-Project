@@ -33,6 +33,7 @@ public class PlatformScript : MonoBehaviour {
         //Load audio clip from resources
         audioClip = Resources.Load<AudioClip>("Audio/win_beep");
         audioSource.clip = audioClip;
+        audioSource.volume = 0.3f;
     }
 	
     void OnCollisionEnter(Collision col)

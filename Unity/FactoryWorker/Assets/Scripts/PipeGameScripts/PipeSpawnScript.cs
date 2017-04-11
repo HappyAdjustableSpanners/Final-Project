@@ -25,6 +25,7 @@ public class PipeSpawnScript : MonoBehaviour {
 
         //Get audio source
         audioSource = GetComponent<AudioSource>();
+        audioSource.volume = 0.2f;
         audioSource.clip = audioClip;
 
         //Instantiate the object to spawn

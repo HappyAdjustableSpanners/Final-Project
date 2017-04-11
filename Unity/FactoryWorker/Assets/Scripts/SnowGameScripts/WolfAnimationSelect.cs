@@ -138,7 +138,7 @@ public class WolfAnimationSelect : MonoBehaviour {
     private IEnumerator DelayThenTurnOffAnimator()
     {
         //Wait for a second to make sure the triggered animation has finished
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
 
         //Disable the animator so the head can move
         anim.enabled = false;

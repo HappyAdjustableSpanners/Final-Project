@@ -75,6 +75,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\CatAnimationScript.cs" />
     <Compile Include="Assets\ControllerInputManager.cs" />
     <Compile Include="Assets\Deprecated\InteractableItem.cs" />
     <Compile Include="Assets\Deprecated\WandController.cs" />
@@ -86,6 +87,8 @@
     <Compile Include="Assets\Resources\Skyboxes\FarlandSkies\Demo\Scripts\Skybox\SkyboxRotator.cs" />
     <Compile Include="Assets\Scripts\ArcheryGameScripts\ArcheryGameController.cs" />
     <Compile Include="Assets\Scripts\ArcheryGameScripts\ArcheryTargetBehaviour.cs" />
+    <Compile Include="Assets\Scripts\BoidBehaviours.cs" />
+    <Compile Include="Assets\Scripts\FlockingBehaviour.cs" />
     <Compile Include="Assets\Scripts\GeneralScripts\HiResScreenShots.cs" />
     <Compile Include="Assets\Scripts\GeneralScripts\SinusoidalMovement.cs" />
     <Compile Include="Assets\Scripts\LevelHubScripts\GrabSphereBehaviour.cs" />

@@ -7,7 +7,7 @@ public class LookAtPlayer : MonoBehaviour {
     public GameObject target;
 
     //Head bone and camera
-    private GameObject head_bone;
+    public GameObject head_bone;
 
     //Look speed
     public float lookSpeed = 2f;
@@ -15,11 +15,17 @@ public class LookAtPlayer : MonoBehaviour {
     //The starting angles of each axis
 	private float origX, origY, origZ;
 
+    //Clamp the angle. Can set to false
+    public bool clampAngle = true;
+
     // Use this for initialization
     void Start()
     {
         //Get head bone
-        head_bone = transform.Find("Armature/Root/Body/Spine4/Spine3/Spine2/Spine1/Head").gameObject;
+        if (!head_bone)
+        {
+            head_bone = transform.Find("Armature/Root/Body/Spine4/Spine3/Spine2/Spine1/Head").gameObject;
+        }
 
         //Record the originial rotations (needed for clamps)
         origX = head_bone.transform.localEulerAngles.x;
@@ -44,9 +50,12 @@ public class LookAtPlayer : MonoBehaviour {
             head_bone.transform.rotation = Quaternion.Slerp(head_bone.transform.rotation, lookRotation, lookSpeed * Time.deltaTime);
 
             //Clamp the rotation
-            head_bone.transform.localEulerAngles = new Vector3(ClampAngle(head_bone.transform.localEulerAngles.x, origX - 100, origX + 100),
-                                                           ClampAngle(head_bone.transform.localEulerAngles.y, origY - 40, origY + 40),
-                                                           ClampAngle(head_bone.transform.localEulerAngles.z, origZ - 10, origZ + 10));
+            if (clampAngle)
+            {
+                head_bone.transform.localEulerAngles = new Vector3(ClampAngle(head_bone.transform.localEulerAngles.x, origX - 100, origX + 100),
+                                                               ClampAngle(head_bone.transform.localEulerAngles.y, origY - 40, origY + 40),
+                                                               ClampAngle(head_bone.transform.localEulerAngles.z, origZ - 10, origZ + 10));
+            }
         }
 	}
 
