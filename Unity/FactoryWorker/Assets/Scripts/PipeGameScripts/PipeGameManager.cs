@@ -150,7 +150,8 @@ public class PipeGameManager : MonoBehaviour {
 
         //Spawn grab sphere
         Transform grabSphereSpawnPos = Resources.Load<Transform>("Prefabs/GrabSpherePosition").transform;
-        GameObject grabSphere = Instantiate(Resources.Load<GameObject>("Prefabs/GrabSphere"), grabSphereSpawnPos.position, grabSphereSpawnPos.rotation);
+        GameObject grabSphere = Instantiate(Resources.Load<GameObject>("Prefabs/GrabSphereHome"), grabSphereSpawnPos.position, grabSphereSpawnPos.rotation);
+        grabSphere.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
         grabSphere.tag = "levelhub";
 
 
