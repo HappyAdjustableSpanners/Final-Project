@@ -11,16 +11,28 @@ ModelImporter:
     100006: Mascot
     100008: //RootNode
     100010: Empty
+    100012: Sun
+    100014: Cylinder
+    100016: thrusters
     400000: Camera
     400002: Eyes
     400004: Lamp
     400006: Mascot
     400008: //RootNode
     400010: Empty
+    400012: Sun
+    400014: Cylinder
+    400016: thrusters
     2300000: Mascot
+    2300002: Cylinder
+    2300004: thrusters
     3300000: Mascot
+    3300002: Cylinder
+    3300004: thrusters
     4300000: Mascot
     4300002: Eyes
+    4300004: Cylinder
+    4300006: thrusters
     7400000: Idle
     7400002: EyeHappy
     7400004: EyeSad

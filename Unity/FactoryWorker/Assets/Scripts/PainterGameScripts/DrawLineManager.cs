@@ -77,7 +77,7 @@ public class DrawLineManager : MonoBehaviour {
 
                 //While the trigger is held, keep adding points to the line
                 line.AddPoint(brushPaintSpawnLocation.position);
-
+                                            
                 //Increment numclicks
                 numClicks++;
             }             
@@ -85,9 +85,22 @@ public class DrawLineManager : MonoBehaviour {
 
         if (controller.GetPressUp(Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger))
         {
+            //Update the convex mesh when we release trigger and line is complete
             mc.convex = true;
 
-            if(line)
+            //One in 3 change of the following happening
+            int randomNum = Random.Range(0, 3);
+            if (randomNum == 0)
+            {
+                //Create child with tag "interestingObject" so the mascot can find it
+                //We parent it to the line so that when the line is erased the mascot will not come back to look at it
+                GameObject obj = new GameObject();
+                obj.transform.position = brushPaintSpawnLocation.position;
+                obj.transform.parent = line.transform;
+                obj.tag = "InterestingObject";
+            }
+
+            if (line)
             {
                 line = null;
             }
