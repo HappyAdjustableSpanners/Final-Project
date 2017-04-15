@@ -59,7 +59,7 @@ public class PipeGameManager : MonoBehaviour {
         Instantiate(levelHub, new Vector3(-2.46f, -5.94f, -2.54f), levelHub.transform.Find("LevelHubPos").transform.rotation);
         
         //Start the music player
-        MusicPlayer.StartMusic(Resources.Load<AudioClip>("Audio/painterGameMusic"));
+        MusicPlayer.StartMusic(Resources.Load<AudioClip>("Audio/pipeGameMusic"));
 
         //Get pipes and platform game objects
         platforms = GameObject.FindGameObjectsWithTag("GamePlatform");

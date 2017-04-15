@@ -13,12 +13,12 @@ public class ArcheryTargetBehaviour : MonoBehaviour {
     private float index;
 
     //Reference to game controller
-    private ArcheryGameController gameController;
+    private ArcheryGameManager gameController;
 
     // Use this for initialization
     void Start () {
         //Get game controller
-        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<ArcheryGameController>();
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<ArcheryGameManager>();
 	}
 	
 	// Update is called once per frame
@@ -39,7 +39,7 @@ public class ArcheryTargetBehaviour : MonoBehaviour {
         //If we hit a target, call the next target method from the game controller
         if (col.gameObject.name == "Arrowhead collider")
         {
-            gameController.NextTarget();
+            gameController.TargetHit();
         }
     }
 }

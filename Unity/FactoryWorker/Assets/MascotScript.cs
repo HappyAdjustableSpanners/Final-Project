@@ -57,11 +57,11 @@ public class MascotScript : MonoBehaviour {
                 }
 
                 //If we haven't calculated the velocity for this movement, calculate it
-                if (!haveCalculatedVelocity)
-                {
+                //if (!haveCalculatedVelocity)
+                //{
                     desiredVelocity = CalculateDesiredVelocity();
-                    haveCalculatedVelocity = true;
-                }
+                    //haveCalculatedVelocity = true;
+                //}
 
                 // Turn to face
                 //Get look at rotation
