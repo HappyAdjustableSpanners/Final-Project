@@ -75,36 +75,35 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\CatAnimationScript.cs" />
-    <Compile Include="Assets\ControllerInputManager.cs" />
     <Compile Include="Assets\Deprecated\InteractableItem.cs" />
     <Compile Include="Assets\Deprecated\WandController.cs" />
     <Compile Include="Assets\Deprecated\WolfMove.cs" />
-    <Compile Include="Assets\MascotScript.cs" />
-    <Compile Include="Assets\MascotThrusterKeepUpright.cs" />
-    <Compile Include="Assets\ObstacleScript.cs" />
     <Compile Include="Assets\Resources\Skyboxes\FarlandSkies\Demo\Scripts\Player\FPSWalkerEnhanced.cs" />
     <Compile Include="Assets\Resources\Skyboxes\FarlandSkies\Demo\Scripts\Player\SmoothMouseLook.cs" />
     <Compile Include="Assets\Resources\Skyboxes\FarlandSkies\Demo\Scripts\Skybox\SkyboxChanger.cs" />
     <Compile Include="Assets\Resources\Skyboxes\FarlandSkies\Demo\Scripts\Skybox\SkyboxRotator.cs" />
-    <Compile Include="Assets\Scripts\ArcheryGameScripts\ArcheryGameController.cs" />
     <Compile Include="Assets\Scripts\ArcheryGameScripts\ArcheryGameManager.cs" />
     <Compile Include="Assets\Scripts\ArcheryGameScripts\ArcheryTargetBehaviour.cs" />
-    <Compile Include="Assets\Scripts\BoidBehaviours.cs" />
-    <Compile Include="Assets\Scripts\FlockingBehaviour.cs" />
+    <Compile Include="Assets\Scripts\GeneralScripts\ControllerInputManager.cs" />
     <Compile Include="Assets\Scripts\GeneralScripts\HiResScreenShots.cs" />
+    <Compile Include="Assets\Scripts\GeneralScripts\MascotScript.cs" />
+    <Compile Include="Assets\Scripts\GeneralScripts\MascotThrusterKeepUpright.cs" />
     <Compile Include="Assets\Scripts\GeneralScripts\SinusoidalMovement.cs" />
     <Compile Include="Assets\Scripts\LevelHubScripts\GrabSphereBehaviour.cs" />
     <Compile Include="Assets\Scripts\LevelHubScripts\LevelHubGameController.cs" />
     <Compile Include="Assets\Scripts\MusicScripts\MusicPlayer.cs" />
+    <Compile Include="Assets\Scripts\PainterGameScripts\BoidBehaviours.cs" />
     <Compile Include="Assets\Scripts\PainterGameScripts\BrushScript.cs" />
+    <Compile Include="Assets\Scripts\PainterGameScripts\CatAnimationScript.cs" />
     <Compile Include="Assets\Scripts\PainterGameScripts\DrawLineManager.cs" />
     <Compile Include="Assets\Scripts\PainterGameScripts\EraserScript.cs" />
+    <Compile Include="Assets\Scripts\PainterGameScripts\FlockingBehaviour.cs" />
     <Compile Include="Assets\Scripts\PainterGameScripts\MeshLineRenderer.cs" />
     <Compile Include="Assets\Scripts\PainterGameScripts\PainterGameManager.cs" />
     <Compile Include="Assets\Scripts\PipeGameScripts\DiscoLightsScript.cs" />
     <Compile Include="Assets\Scripts\PipeGameScripts\FloorBehaviour.cs" />
     <Compile Include="Assets\Scripts\PipeGameScripts\GameBallBehaviour.cs" />
+    <Compile Include="Assets\Scripts\PipeGameScripts\ObstacleScript.cs" />
     <Compile Include="Assets\Scripts\PipeGameScripts\PipeGameManager.cs" />
     <Compile Include="Assets\Scripts\PipeGameScripts\PipeScript.cs" />
     <Compile Include="Assets\Scripts\PipeGameScripts\PipeSpawnScript.cs" />
@@ -230,11 +229,9 @@
   <ItemGroup>
     <None Include="Assets\Resources\Fonts\luckiest-guy\FontShader.shader" />
     <None Include="Assets\Resources\Fonts\luckiest-guy\LICENSE.txt" />
-    <None Include="Assets\Resources\Fonts\luckiest-guy\SingleSidedNonSeeThrough.shader" />
-    <None Include="Assets\Resources\Icons\ColorfulButtons\Credits.txt" />
     <None Include="Assets\Resources\Shaders\Dissolve.shader" />
     <None Include="Assets\Resources\Shaders\DoubleSided.shader" />
-    <None Include="Assets\SingleSidedNonSeeThrough.shader" />
+    <None Include="Assets\Resources\Shaders\SingleSidedNonSeeThrough.shader" />
     <None Include="Assets\SteamVR\InteractionSystem\Core\Shaders\SeeThru.shader" />
     <None Include="Assets\SteamVR\InteractionSystem\Core\Shaders\Silhouette.shader" />
     <None Include="Assets\SteamVR\InteractionSystem\Hints\Shaders\ControllerButtonHints.shader" />

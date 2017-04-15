@@ -162,7 +162,7 @@ public class PipeGameManager : MonoBehaviour {
     private void SetUpScene()
     {
         //Apply floor material
-        GameObject.Find("Environment").transform.Find("Floor").GetComponent<Renderer>().material = Resources.Load<Material>("Materials/M_Hub");
+        GameObject.Find("Environment").transform.Find("Floor").GetComponent<Renderer>().material = Resources.Load<Material>("Materials/Models/Levelhub/M_Hub");
 
         //Get room walls
         Transform[] walls = GameObject.Find("Environment").transform.Find("room_hub").GetComponentsInChildren<Transform>();
@@ -175,7 +175,7 @@ public class PipeGameManager : MonoBehaviour {
 
         // Assign pedestal materials
         GameObject pedestal = GameObject.Find("GameLevel/Pedestal");
-        Material[] tempMats = { Resources.Load<Material>("Materials/M_LevelBoard"), Resources.Load<Material>("Materials/SnowMat") };
+        Material[] tempMats = { Resources.Load<Material>("Materials/Models/LevelBoard/M_LevelBoard"), Resources.Load<Material>("Materials/PlainColors/M_White") };
         pedestal.GetComponent<Renderer>().materials = tempMats;
     }
 

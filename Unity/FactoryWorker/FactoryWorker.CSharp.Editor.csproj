@@ -133,11 +133,9 @@
   <ItemGroup>
     <None Include="Assets\Resources\Fonts\luckiest-guy\FontShader.shader" />
     <None Include="Assets\Resources\Fonts\luckiest-guy\LICENSE.txt" />
-    <None Include="Assets\Resources\Fonts\luckiest-guy\SingleSidedNonSeeThrough.shader" />
-    <None Include="Assets\Resources\Icons\ColorfulButtons\Credits.txt" />
     <None Include="Assets\Resources\Shaders\Dissolve.shader" />
     <None Include="Assets\Resources\Shaders\DoubleSided.shader" />
-    <None Include="Assets\SingleSidedNonSeeThrough.shader" />
+    <None Include="Assets\Resources\Shaders\SingleSidedNonSeeThrough.shader" />
     <None Include="Assets\SteamVR\InteractionSystem\Core\Shaders\SeeThru.shader" />
     <None Include="Assets\SteamVR\InteractionSystem\Core\Shaders\Silhouette.shader" />
     <None Include="Assets\SteamVR\InteractionSystem\Hints\Shaders\ControllerButtonHints.shader" />

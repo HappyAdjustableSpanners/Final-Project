@@ -6,17 +6,8 @@ public class BrushScript : MonoBehaviour {
 
     //On brush collision with paint pot, move material of paint can onto brush tip
 
-    //Sphere collider on end of brush
-    private SphereCollider sphereCollider;
-
     //Brush tip
     public GameObject brushTip;
-
-	// Use this for initialization
-	void Start () {
-        //get sphere collider
-        sphereCollider = GetComponent<SphereCollider>();
-	}
 
     public void OnTriggerEnter(Collider col)
     {

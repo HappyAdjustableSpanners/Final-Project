@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DiscoLightsScript : MonoBehaviour {
 
-    private Light light;
+    private Light discoLight;
     private Color color;
     private Color[] discoColors = new Color[6];
     private float timer = 0f;
@@ -14,7 +14,7 @@ public class DiscoLightsScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-        light = GetComponent<Light>();
+        discoLight = GetComponent<Light>();
         interval = colorChangeInterval;
         colorChangeInterval *= 100;
 
@@ -36,7 +36,7 @@ public class DiscoLightsScript : MonoBehaviour {
         {
             color = discoColors[Random.Range(0, 5)];
             interval += colorChangeInterval;
-            light.color = color;
+            discoLight.color = color;
         }
 	}
 }

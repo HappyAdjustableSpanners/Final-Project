@@ -16,7 +16,7 @@ public class ArcheryGameManager : MonoBehaviour {
     private int targetsHit = 0;
 
     //Stats board
-    TextMesh timeRemainingText, targetsHitText, highScoreText, currentIntervalText;
+    TextMesh timeRemainingText, currentScoreText, highScoreText, currentIntervalText;
 
     //High scores
     private int targetsHitHighScore;
@@ -70,9 +70,9 @@ public class ArcheryGameManager : MonoBehaviour {
 
         //Initialise text elements
         timeRemainingText = GameObject.Find("GameLevel/StatsBoard/TimeRemainingValue").GetComponent<TextMesh>();
-        targetsHitText = GameObject.Find("GameLevel/StatsBoard/TargetsHitValue").GetComponent<TextMesh>();
-        highScoreText = GameObject.Find("GameLevel/HighScoreBoard/HighScoreValue").GetComponent<TextMesh>();
         currentIntervalText = GameObject.Find("GameLevel/StatsBoard/CurrentIntervalValue").GetComponent<TextMesh>();
+        currentScoreText = GameObject.Find("GameLevel/ScoreBoard/CurrentScoreValue").GetComponent<TextMesh>();
+        highScoreText = GameObject.Find("GameLevel/ScoreBoard/HighScoreValue").GetComponent<TextMesh>();
 
         //Set text values
         highScoreText.text = PlayerPrefs.GetInt("targetsHitHighScore").ToString();
@@ -162,7 +162,7 @@ public class ArcheryGameManager : MonoBehaviour {
 
             //Update the text elements
             timeRemainingText.text = timer.ToString("f1");
-            targetsHitText.text = targetsHit.ToString();
+            currentScoreText.text = targetsHit.ToString();
         }
 
         if (haveWon)
