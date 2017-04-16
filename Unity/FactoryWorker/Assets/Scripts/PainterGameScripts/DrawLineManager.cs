@@ -89,7 +89,7 @@ public class DrawLineManager : MonoBehaviour {
             mc.convex = true;
 
             //One in 3 change of the following happening
-            int randomNum = Random.Range(0, 3);
+            int randomNum = Random.Range(0, 6);
             if (randomNum == 0)
             {
                 //Create child with tag "interestingObject" so the mascot can find it

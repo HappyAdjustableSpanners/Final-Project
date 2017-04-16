@@ -10,6 +10,9 @@ public class SinusoidalMovement : MonoBehaviour {
 
     private float index;
 
+    public enum Axis { horizontal, vertical };
+    public Axis axis = Axis.vertical;
+
     // Use this for initialization
     void Start () {
 		
@@ -22,7 +25,12 @@ public class SinusoidalMovement : MonoBehaviour {
         float x = horizontalMovement * Mathf.Cos(speed * index);
         float y = verticalMovement * Mathf.Sin(speed * index);
 
-        //Update the local position (relative to its parent)
-        transform.localPosition = new Vector3(0, y, x);
+        if (axis == Axis.vertical)
+        {
+            //Update the local position (relative to its parent)
+            transform.localPosition = new Vector3(0, y, x);
+        }
+        else
+            transform.localPosition = new Vector3(x, transform.localPosition.y, y);
     }
 }

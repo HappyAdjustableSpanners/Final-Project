@@ -16,13 +16,13 @@ public class ArcheryGameManager : MonoBehaviour {
     private int targetsHit = 0;
 
     //Stats board
-    TextMesh timeRemainingText, currentScoreText, highScoreText, currentIntervalText;
+    TextMesh timeRemainingText, currentScoreText, highScoreText, currentIntervalText, balloonText, balloonTextBacking;
 
     //High scores
     private int targetsHitHighScore;
 
     //Win conditions
-    private bool haveWon = false;
+    private bool haveFinished = false;
 
     //Balloon
     public GameObject balloon;
@@ -52,7 +52,7 @@ public class ArcheryGameManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        //PlayerPrefs.SetInt("targetsHitHighScore", 2);
+        PlayerPrefs.SetInt("targetsHitHighScore", 6);
 
         //Get interactables
         playAgainGrabSphere = GameObject.Find("Interactables").transform.Find("PlayAgainGrabSphere").gameObject;
@@ -73,6 +73,9 @@ public class ArcheryGameManager : MonoBehaviour {
         currentIntervalText = GameObject.Find("GameLevel/StatsBoard/CurrentIntervalValue").GetComponent<TextMesh>();
         currentScoreText = GameObject.Find("GameLevel/ScoreBoard/CurrentScoreValue").GetComponent<TextMesh>();
         highScoreText = GameObject.Find("GameLevel/ScoreBoard/HighScoreValue").GetComponent<TextMesh>();
+        balloonText = GameObject.Find("Win/Balloon/instructions_board/Text/YouveBeatenHighScoreText").GetComponent<TextMesh>();
+        balloonTextBacking = GameObject.Find("Win/Balloon/instructions_board/Text/YouveBeatenHighScoreTextBacking").GetComponent<TextMesh>();
+
 
         //Set text values
         highScoreText.text = PlayerPrefs.GetInt("targetsHitHighScore").ToString();
@@ -119,18 +122,18 @@ public class ArcheryGameManager : MonoBehaviour {
             }
             else
             {
+                //Enable balloon behaviour
+                balloonScript.enabled = true;
+                balloon.SetActive(true);
+
+                //Set win to true
+                haveFinished = true;
+
                 //Check if high score has been beaten
                 if (targetsHit > targetsHitHighScore && targetsHitHighScore != 0)
                 {
                     //High score has been beaten
                     PlayerPrefs.SetInt("targetsHitHighScore", targetsHit);
-
-                    //Enable balloon behaviour
-                    balloonScript.enabled = true;
-                    balloon.SetActive(true);
-
-                    //Set win to true
-                    haveWon = true;
 
                     //Play applause sound
                     audioSource.clip = applause;
@@ -142,6 +145,10 @@ public class ArcheryGameManager : MonoBehaviour {
                     //Play sad audio
                     audioSource.clip = failBeep;
                     audioSource.Play();
+
+                    //Change the balloon text
+                    balloonText.text = "Better luck \n next time!";
+                    balloonTextBacking.text = "Better luck \n next time!";
                 }
 
                 //Disable all targets
@@ -165,7 +172,7 @@ public class ArcheryGameManager : MonoBehaviour {
             currentScoreText.text = targetsHit.ToString();
         }
 
-        if (haveWon)
+        if (haveFinished)
         {
             //If we have won
             if (balloon)

@@ -21,8 +21,8 @@ public class PlatformScript : MonoBehaviour {
     void Start () {
 
         //Load the materials from resources
-        greenMat = Resources.Load("Materials/M_Green", typeof(Material)) as Material;
-        whiteMat = Resources.Load("Materials/M_White", typeof(Material)) as Material;
+        greenMat = Resources.Load("Materials/PlainColors/M_Green", typeof(Material)) as Material;
+        whiteMat = Resources.Load("Materials/PlainColors/M_White", typeof(Material)) as Material;
 
         //Get the level manager
         levelManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<PipeGameManager>();

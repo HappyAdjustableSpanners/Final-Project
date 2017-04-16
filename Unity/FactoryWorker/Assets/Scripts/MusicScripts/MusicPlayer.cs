@@ -29,6 +29,10 @@ public class MusicPlayer : MonoBehaviour {
             {
                 //Load the specified clip
                 audioSource.clip = audioClip;
+
+                //Set the volume
+                audioSource.volume = 0.05f;
+
                 //Play the audio
                 audioSource.Play();
 

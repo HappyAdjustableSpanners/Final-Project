@@ -25,8 +25,8 @@ public class ObstacleScript : MonoBehaviour
     void Start()
     {
         //Load the materials from resources
-        greenMat = Resources.Load("Materials/M_Green", typeof(Material)) as Material;
-        pinkMat = Resources.Load("Materials/M_Pink", typeof(Material)) as Material;
+        greenMat = Resources.Load("Materials/PlainColors/M_Green", typeof(Material)) as Material;
+        pinkMat = Resources.Load("Materials/PlainColors/M_Pink", typeof(Material)) as Material;
 
         //Get the level manager
         levelManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<PipeGameManager>();

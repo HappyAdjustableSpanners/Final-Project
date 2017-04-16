@@ -75,9 +75,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\CameraPanning.cs" />
     <Compile Include="Assets\Deprecated\InteractableItem.cs" />
     <Compile Include="Assets\Deprecated\WandController.cs" />
     <Compile Include="Assets\Deprecated\WolfMove.cs" />
+    <Compile Include="Assets\LookAtScript.cs" />
     <Compile Include="Assets\Resources\Skyboxes\FarlandSkies\Demo\Scripts\Player\FPSWalkerEnhanced.cs" />
     <Compile Include="Assets\Resources\Skyboxes\FarlandSkies\Demo\Scripts\Player\SmoothMouseLook.cs" />
     <Compile Include="Assets\Resources\Skyboxes\FarlandSkies\Demo\Scripts\Skybox\SkyboxChanger.cs" />
