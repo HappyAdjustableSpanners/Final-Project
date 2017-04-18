@@ -8,7 +8,7 @@ public class TextLookAtPlayer : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        //playerPos = GameObject.Find("Player").transform.Find("SteamVRObjects/VRCamera/FollowHead");
+        playerPos = GameObject.Find("Player").transform.Find("SteamVRObjects/VRCamera/FollowHead");
 	}
 	
 	// Update is called once per frame
