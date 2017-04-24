@@ -90,7 +90,7 @@ public class PipeGameManager : MonoBehaviour {
     void Start () {
 
         //Uncomment the line below to reset the top score from user prefs
-        //PlayerPrefs.SetInt("TopLevel", 1);
+        PlayerPrefs.SetInt("TopLevel", 1);
 
         //Load in player prefs top level
         topLevel = PlayerPrefs.GetInt("TopLevel");

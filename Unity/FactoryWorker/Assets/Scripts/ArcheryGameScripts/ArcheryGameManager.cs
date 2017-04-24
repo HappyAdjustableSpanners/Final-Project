@@ -52,7 +52,8 @@ public class ArcheryGameManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        PlayerPrefs.SetInt("targetsHitHighScore", 6);
+        //Set the highscore manually (for debug)
+        PlayerPrefs.SetInt("targetsHitHighScore", 5);
 
         //Get interactables
         playAgainGrabSphere = GameObject.Find("Interactables").transform.Find("PlayAgainGrabSphere").gameObject;

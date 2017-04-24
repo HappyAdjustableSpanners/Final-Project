@@ -75,19 +75,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\CameraPanning.cs" />
     <Compile Include="Assets\Deprecated\InteractableItem.cs" />
     <Compile Include="Assets\Deprecated\WandController.cs" />
     <Compile Include="Assets\Deprecated\WolfMove.cs" />
-    <Compile Include="Assets\LookAtScript.cs" />
     <Compile Include="Assets\Resources\Skyboxes\FarlandSkies\Demo\Scripts\Player\FPSWalkerEnhanced.cs" />
     <Compile Include="Assets\Resources\Skyboxes\FarlandSkies\Demo\Scripts\Player\SmoothMouseLook.cs" />
     <Compile Include="Assets\Resources\Skyboxes\FarlandSkies\Demo\Scripts\Skybox\SkyboxChanger.cs" />
     <Compile Include="Assets\Resources\Skyboxes\FarlandSkies\Demo\Scripts\Skybox\SkyboxRotator.cs" />
     <Compile Include="Assets\Scripts\ArcheryGameScripts\ArcheryGameManager.cs" />
     <Compile Include="Assets\Scripts\ArcheryGameScripts\ArcheryTargetBehaviour.cs" />
+    <Compile Include="Assets\Scripts\GeneralScripts\CameraPanning.cs" />
     <Compile Include="Assets\Scripts\GeneralScripts\ControllerInputManager.cs" />
     <Compile Include="Assets\Scripts\GeneralScripts\HiResScreenShots.cs" />
+    <Compile Include="Assets\Scripts\GeneralScripts\LookAtScript.cs" />
     <Compile Include="Assets\Scripts\GeneralScripts\MascotScript.cs" />
     <Compile Include="Assets\Scripts\GeneralScripts\MascotThrusterKeepUpright.cs" />
     <Compile Include="Assets\Scripts\GeneralScripts\SinusoidalMovement.cs" />
