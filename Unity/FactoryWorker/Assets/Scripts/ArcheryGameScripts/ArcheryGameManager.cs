@@ -53,7 +53,7 @@ public class ArcheryGameManager : MonoBehaviour {
     void Start () {
 
         //Set the highscore manually (for debug)
-        PlayerPrefs.SetInt("targetsHitHighScore", 5);
+        //PlayerPrefs.SetInt("targetsHitHighScore", 0);
 
         //Get interactables
         playAgainGrabSphere = GameObject.Find("Interactables").transform.Find("PlayAgainGrabSphere").gameObject;
@@ -131,7 +131,7 @@ public class ArcheryGameManager : MonoBehaviour {
                 haveFinished = true;
 
                 //Check if high score has been beaten
-                if (targetsHit > targetsHitHighScore && targetsHitHighScore != 0)
+                if (targetsHit > targetsHitHighScore)
                 {
                     //High score has been beaten
                     PlayerPrefs.SetInt("targetsHitHighScore", targetsHit);

@@ -7,5 +7,5 @@ public class LevelHubGameController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         MusicPlayer.StartMusic(Resources.Load<AudioClip>("Audio/levelHubMusic"));
-	}
+    }
 }

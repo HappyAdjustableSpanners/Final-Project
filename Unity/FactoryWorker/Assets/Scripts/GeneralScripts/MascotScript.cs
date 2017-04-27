@@ -73,6 +73,8 @@ public class MascotScript : MonoBehaviour {
                             break;
                         }
                     }
+                    else
+                        currentObject = 0;
 
                     if (target)
                     {
