@@ -30,10 +30,8 @@ public class ArcheryGameManager : MonoBehaviour {
     private Valve.VR.InteractionSystem.Balloon balloonScript;
 
     //Audio
-    private AudioSource audioSource;
-    private AudioClip successBeep;
-    private AudioClip applause;
-    private AudioClip failBeep;
+    private AudioSource audioSource, tickAudioSource;
+    private AudioClip successBeep, applause, failBeep;
 
     //Archery targets
     private GameObject[] targets;
@@ -89,6 +87,7 @@ public class ArcheryGameManager : MonoBehaviour {
 
         //Audio
         audioSource = GetComponent<AudioSource>();
+        tickAudioSource = GameObject.Find("TickAudio").GetComponent<AudioSource>();
         successBeep = Resources.Load<AudioClip>("Audio/win_beep");
         applause = Resources.Load<AudioClip>("Audio/applause");
         failBeep = Resources.Load<AudioClip>("Audio/fail_beep");
@@ -115,6 +114,13 @@ public class ArcheryGameManager : MonoBehaviour {
 
         if (gameRunning)
         {
+            //Start the ticking sound
+            if(!tickAudioSource.enabled)
+            {
+                tickAudioSource.enabled = true;
+                tickAudioSource.Play();
+            }
+
             //If timer reaches zero, game over
             if (timer > 0)
             {
@@ -163,6 +169,9 @@ public class ArcheryGameManager : MonoBehaviour {
 
                 //Spawn play again sphere
                 playAgainGrabSphere.SetActive(true);
+
+                //Disable the tick audio
+                tickAudioSource.enabled = false;
 
                 //Set game running to false
                 gameRunning = false;
